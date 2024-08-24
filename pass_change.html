@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- my web icon -->
-    <link rel="shortcut icon" href="images/img-icon.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
     <!-- css linkup -->
     <link rel="stylesheet" href="./css/style.css" />
     <!-- my web title -->
@@ -25,24 +25,24 @@
 
     <!-- Login -->
     <div class="d-flex container gap-5" style="padding-top: 200px;">
-        <div class="card" style="border-radius: 20px;">
-            <img src="images/pass.svg" alt="login-img" class="login-img w-50" />
+        <div>
+            <img src="images/pass.svg" alt="login-img" class="login-img card bg-dark w-100 hovers" style="border-radius: 20px;" />
         </div>
-        <div class="w-100 card hovers p-5" style="border-radius: 20px;">
+        <div class="w-100 card hovers p-5 bg-dark text-white" style="border-radius: 20px;">
             <form id="changePasswordForm" class="row g-3">
                 <div class="col-md-12">
-                    <label for="oldPassword" class="form-label text-dark"><b>Old Password</b></label>
+                    <label for="oldPassword" class="form-label"><b>Old Password</b></label>
                     <input type="password" class="form-control" id="oldPassword" name="oldPassword"
                         placeholder="Please Enter Your Old Password" required />
                 </div>
                 <div class="col-md-12">
-                    <label for="newPassword" class="form-label text-dark"><b>New Password</b></label>
+                    <label for="newPassword" class="form-label"><b>New Password</b></label>
                     <input type="password" class="form-control" id="newPassword" name="newPassword"
                         placeholder="Please Enter A New Strong Password" required />
                 </div>
-                <div class="col-12">
+                <div>
                     <button type="submit" class="btn btn-outline-info">
-                        <b>Submit</b>
+                        Submit
                     </button>
                 </div>
             </form>

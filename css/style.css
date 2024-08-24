@@ -1,0 +1,44 @@
+body {
+    background-color: white !important;
+}
+
+.hovers {
+    box-shadow: 4px 4px 8px skyblue;
+}
+
+#navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.ekrokom_color {
+    background: linear-gradient(90deg, #00ffd5 15.94%, #99ff00 89.53%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.onnorokom_color {
+    background: linear-gradient(90deg, hotpink 15.94%, pink 89.53%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.banner {
+    display: flex;
+    height: 450px;
+    margin: auto;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(60deg, #69969b, #0194b5);
+    box-shadow: 4px 4px 8px gray;
+    border-radius: 10px;
+}
+
+#banner {
+    padding-top: 10rem;
+}

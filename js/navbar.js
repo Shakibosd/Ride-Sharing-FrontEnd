@@ -15,6 +15,12 @@ fetch("navbar.html")
             <a class="btn btn-info" href="./auth_home.html">Home</a>
             <a class="btn btn-success" href="./profile.html">Profile</a>
             <a class="btn btn-secondary" href="./pass_change.html">Password Change</a>
+            <a class="btn btn-secondary" href="./driver.html">Driver</a>
+            <a class="btn btn-secondary" href="./rider.html">Rider</a>
+            <a class="btn btn-secondary" href="./maps.html">Maps</a>
+            <a class="btn btn-secondary" href="./notifi.html">Notifications</a>
+            <a class="btn btn-secondary" href="./pay.html">Payments</a>
+            <a class="btn btn-secondary" href="./rev.html">Reviews</a>
             <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
             `;
         }

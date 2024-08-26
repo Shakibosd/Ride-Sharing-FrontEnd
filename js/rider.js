@@ -16,26 +16,25 @@ function fetchRides() {
 
 function displayRides(rides) {
     const container = document.getElementById("rides-container");
-    container.innerHTML = ""; 
+    container.innerHTML = "";
 
     rides.forEach(ride => {
         const card = document.createElement("div");
-        card.className = "col-md-4 mb-3";
+        card.className = "col-md-4 mb-3 container";
 
         card.innerHTML = `
-            <div class="card">
+            <div class="card bg-dark text-white w-100 hovers" style="border-radius: 20px; ">
                 <div class="card-body">
-                    <h5 class="card-title">Ride ID: ${ride.id}</h5>
-                    <p class="card-text"><strong>Rider:</strong> ${ride.rider}</p>
-                    <p class="card-text"><strong>Driver:</strong> ${ride.driver}</p>
-                    <p class="card-text"><strong>Start Location:</strong> ${ride.start_location}</p>
-                    <p class="card-text"><strong>End Location:</strong> ${ride.end_location}</p>
-                    <p class="card-text"><strong>Status:</strong> ${ride.status}</p>
-                    <p class="card-text"><strong>Created At:</strong> ${new Date(ride.created_at).toLocaleString()}</p>
+                    <h5 class="card-title"><b>Ride ID : </b> ${ride.id}</h5>
+                    <p class="card-text"><b>Rider : </b> ${ride.rider}</p>
+                    <p class="card-text"><b>Driver : </b> ${ride.driver}</p>
+                    <p class="card-text"><b>Start Location : </b> ${ride.start_location}</p>
+                    <p class="card-text"><b>End Location : </b> ${ride.end_location}</p>
+                    <p class="card-text"><b>Status : <span class="btn btn-secondary">${ride.status}</span></b></p>
+                    <p class="card-text"><b>Created At : </b> ${(ride.created_at)}</p>
                 </div>
             </div>
         `;
-
         container.appendChild(card);
     });
 }

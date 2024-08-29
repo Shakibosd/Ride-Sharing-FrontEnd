@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchRides();
+
+    const form = document.getElementById("ride-form");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        addRide();
+    });
 });
 
 function fetchRides() {
@@ -10,31 +16,61 @@ function fetchRides() {
             displayRides(data);
         })
         .catch(error => {
-            console.error("Error fetching rides:", error);
+            console.error("Error fetching rides : ", error);
         });
 }
 
 function displayRides(rides) {
-    const container = document.getElementById("rides-container");
-    container.innerHTML = "";
+    const ridesContainer = document.getElementById("rides-list");
+    ridesContainer.innerHTML = "";
 
     rides.forEach(ride => {
-        const card = document.createElement("div");
-        card.className = "col-md-4 mb-3 container";
-
-        card.innerHTML = `
-            <div class="card bg-dark text-white w-100 hovers" style="border-radius: 20px; ">
-                <div class="card-body">
-                    <h5 class="card-title"><b>Ride ID : </b> ${ride.id}</h5>
-                    <p class="card-text"><b>Rider : </b> ${ride.rider}</p>
-                    <p class="card-text"><b>Driver : </b> ${ride.driver}</p>
-                    <p class="card-text"><b>Start Location : </b> ${ride.start_location}</p>
-                    <p class="card-text"><b>End Location : </b> ${ride.end_location}</p>
-                    <p class="card-text"><b>Status : <span class="btn btn-secondary">${ride.status}</span></b></p>
-                    <p class="card-text"><b>Created At : </b> ${(ride.created_at)}</p>
-                </div>
+        const rideCard = document.createElement("div");
+        rideCard.classList.add("card", "mb-3", "bg-dark", "text-white");
+        rideCard.style.borderRadius = "10px";
+        rideCard.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">Rider : ${ride.name}</h5>
+                <p class="card-text">Start Location : ${ride.start_location}</p>
+                <p class="card-text">End Location : ${ride.end_location}</p>
+                <p class="card-text"><small class="text-muted">Created at:  ${new Date(ride.created_at).toLocaleString()}</small></p>
             </div>
         `;
-        container.appendChild(card);
+        ridesContainer.appendChild(rideCard);
     });
+}
+
+
+function addRide() {
+    const name = document.getElementById("rider-name").value;
+    const startLocation = document.getElementById("start-location").value;
+    const endLocation = document.getElementById("end-location").value;
+
+    const token = localStorage.getItem("authToken");
+    fetch("http://127.0.0.1:8000/rides/rides/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+        },
+        body: JSON.stringify({
+            name: name,
+            start_location: startLocation,
+            end_location: endLocation
+        }),
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Failed to add ride");
+            }
+        })
+        .then(data => {
+            console.log("Ride added:", data);
+            fetchRides(); 
+        })
+        .catch(error => {
+            console.error("Error adding ride:", error);
+        });
 }

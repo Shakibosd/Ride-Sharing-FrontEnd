@@ -24,12 +24,27 @@
         <script src="./js/navbar.js"></script>
     </section>
 
-    <div class="mt-5 container" style="padding-top: 110px;">
-        <h1 class="text-center">Rides List</h1>
-        <div id="rides-container" class="row pt-5">
-
+    <main>
+        <div class="container" style="padding-top: 140px;">
+            <h2 class="text-center">Add a Ride</h2>
+            <form id="ride-form" class="card mx-auto w-50 p-4 bg-dark text-white" style="border-radius: 20px;" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="rider-name" class="form-label">Rider Name</label>
+                    <input type="text" class="form-control bg-dark text-white" id="rider-name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="start-location" class="form-label">Start Location</label>
+                    <input type="text" class="form-control bg-dark text-white" id="start-location" required>
+                </div>
+                <div class="mb-3">
+                    <label for="end-location" class="form-label">End Location</label>
+                    <input type="text" class="form-control bg-dark text-white" id="end-location" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-25">Submit</button>
+            </form>
         </div>
-    </div>
+    </main>
+
     <!-- footer js -->
     <div id="footer"></div>
     <script src="./js/footer.js"></script>

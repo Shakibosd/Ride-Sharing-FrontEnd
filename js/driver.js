@@ -23,7 +23,7 @@ function fetchDrivers() {
                 listItem.style.lineBreak = "10px";
                 listItem.innerHTML = `
                 <h5>
-                   <a onclick="fetchDriverDetails(${driver.id})">${driver.user} - ${driver.is_available ? "Available" : "Not Available"}</a>
+                   <a onclick="fetchDriverDetails(${driver.id})">${driver.name}</a>
                 </h5>
             `;
                 driverList.appendChild(listItem);
@@ -47,14 +47,26 @@ function fetchDriverDetails(driverId) {
             }
             return response.json();
         })
-        .then(data => {
+        .then(driver => {
+            console.log("Driver Data",driver);
+            console.log("Driver Image", driver.image);
             const driverDetails = document.getElementById("driver-details");
             driverDetails.innerHTML = `
-            <div class="card-body">
-                <h3 class="card-title">Username : ${data.user}</h3>
-                <h5 class="card-title">Name : ${data.name} </h5> 
-                <h6 class="card-title">Username : ${data.par_hours} ৳</h6>
-                <h6 class="card-text">Availability : ${data.is_available ? "Available" : "Not Available"}</h6>
+            <div class="card-body d-flex">
+                <div>
+                    <h6 class="card-title">Phone : ${driver.phone_number} </h6> 
+                    <h6 class="card-title">Email : ${driver.email} </h6> 
+                    <h6 class="card-title">Driving Laicens : ${driver.driving_licence} </h6> 
+                    <h6 class="card-title">Number Plate : ${driver.number_plate} </h6> 
+                    <h6 class="card-title">Par Hours : ${driver.par_hours} ৳</h6>
+                    <h6 class="card-title text-info">Where Ride : ${driver.where_ride_to_where_ride}</h6>
+                    <h6 class="card-text">Availability : ${driver.is_available ? "Available" : "Not Available"}</h6>
+                </div>
+                <div style="padding-top: 10rem;">
+                    <a class="btn btn-primary btn-sm">Rider Request</a>
+                    <a class="btn btn-info btn-sm">Rider Review</a>
+                    <a class="btn btn-secondary btn-sm">Payment</a>
+                </div>
             </div>
         `;
         })

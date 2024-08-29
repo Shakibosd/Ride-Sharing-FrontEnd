@@ -24,11 +24,9 @@ function displayPayments(payments) {
         item.style.borderRadius = "20px";
         item.innerHTML = `
             <div>
-                <h5 class="mb-1">Payment ID: ${payment.id}</h5>
-                <p class="mb-1"><strong>User:</strong> ${payment.user}</p>
-                <p class="mb-1"><strong>Ride:</strong> ${payment.ride}</p>
-                <p class="mb-1"><strong>Amount:</strong> $${payment.amount}</p>
-                <small><strong>Timestamp:</strong> ${(payment.timestamp)}</small>
+                <h5 class="mb-1">Payment ID : ${payment.id}</h5>
+                <p class="mb-1"><strong>Amount : </strong>${payment.amount} ৳</p>
+                <small><strong>Timestamp : </strong> ${(payment.timestamp)}</small>
             </div>
         `;
 

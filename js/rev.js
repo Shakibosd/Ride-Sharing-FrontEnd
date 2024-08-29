@@ -25,8 +25,6 @@ function displayReviews(reviews) {
         item.innerHTML = `
             <div>
                 <h5 class="mb-1"><b>Review ID : </b> ${review.id}</h5>
-                <p class="mb-1"><b>User : </b> ${review.user}</p>
-                <p class="mb-1"><strong>Ride : </strong> ${review.ride}</p>
                 <p class="mb-1"><strong>Rating : </strong> ${review.rating}</p>
                 <p class="mb-1"><strong>Comment : </strong> ${review.comment}</p>
                 <small><strong>Created At : </strong> ${(review.created_at)}</small>

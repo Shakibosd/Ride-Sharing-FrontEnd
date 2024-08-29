@@ -18,7 +18,7 @@ fetch("navbar.html")
             <a class="btn btn-primary btn-sm" href="./driver.html">Driver</a>
             <a class="btn btn-warning btn-sm " href="./rider.html">Rider</a>
             <a class="btn btn-dark btn-sm" href="./maps.html">Maps</a>
-            <a class="btn btn-sm text-white" href="./notifi.html" style="background-color: darkcyan;">Notifications</a>
+            <!--<a class="btn btn-sm text-white" href="./notifi.html" style="background-color: darkcyan;">Notifications</a>-->
             <a class="btn btn-sm" href="./pay.html" style="background-color: wheat">Payments</a>
             <a class="btn btn-sm" href="./rev.html" style="background-color: hotpink;">Reviews</a>
             <a class="btn btn-danger btn-sm" onclick="handleLogout()">Logout</a>

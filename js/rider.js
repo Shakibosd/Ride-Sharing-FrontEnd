@@ -15,16 +15,17 @@ function fetchRides() {
             console.log(data);
             displayRides(data);
         })
-        .catch(error => {
-            console.error("Error fetching rides : ", error);
-        });
+    // .catch(error => {
+    //     console.error("Error fetching rides : ", error);
+    // });
 }
 
 function displayRides(rides) {
     const ridesContainer = document.getElementById("rides-list");
-    ridesContainer.innerHTML = "";
-
+    // ridesContainer.innerHTML = "";
+    console.log(rides);
     rides.forEach(ride => {
+        console.log(ride);
         const rideCard = document.createElement("div");
         rideCard.classList.add("card", "mb-3", "bg-dark", "text-white");
         rideCard.style.borderRadius = "10px";
@@ -33,7 +34,7 @@ function displayRides(rides) {
                 <h5 class="card-title">Rider : ${ride.name}</h5>
                 <p class="card-text">Start Location : ${ride.start_location}</p>
                 <p class="card-text">End Location : ${ride.end_location}</p>
-                <p class="card-text"><small class="text-muted">Created at:  ${new Date(ride.created_at).toLocaleString()}</small></p>
+                <p class="card-text"><small class="text-muted">Created at:  ${ride.created_at}</small></p>
             </div>
         `;
         ridesContainer.appendChild(rideCard);
@@ -60,6 +61,7 @@ function addRide() {
         }),
     })
         .then(response => {
+            console.log("Response status:", response.status);
             if (response.ok) {
                 return response.json();
             } else {
@@ -68,9 +70,10 @@ function addRide() {
         })
         .then(data => {
             console.log("Ride added:", data);
-            fetchRides(); 
+            fetchRides();
         })
         .catch(error => {
             console.error("Error adding ride:", error);
         });
 }
+fetchRides();

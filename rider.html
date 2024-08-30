@@ -27,20 +27,17 @@
     <main>
         <div class="container" style="padding-top: 140px;">
             <h2 class="text-center">Add a Ride</h2>
-            <form id="ride-form" class="card mx-auto w-50 p-4 bg-dark text-white" style="border-radius: 20px;" enctype="multipart/form-data">
+            <form id="ride-form" class="card mx-auto w-50 p-4 bg-dark text-white" style="border-radius: 20px;"
+                enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="rider-name" class="form-label">Rider Name</label>
-                    <input type="text" class="form-control bg-dark text-white" id="rider-name" required>
+                    <label for="where_ride_from" class="form-label">Start Location</label>
+                    <input type="text" class="form-control bg-dark text-white" id="where_ride_from" required>
                 </div>
                 <div class="mb-3">
-                    <label for="start-location" class="form-label">Start Location</label>
-                    <input type="text" class="form-control bg-dark text-white" id="start-location" required>
+                    <label for="where_ride_to" class="form-label">End Location</label>
+                    <input type="text" class="form-control bg-dark text-white" id="where_ride_to" required>
                 </div>
-                <div class="mb-3">
-                    <label for="end-location" class="form-label">End Location</label>
-                    <input type="text" class="form-control bg-dark text-white" id="end-location" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-25">Submit</button>
+                <button type="submit" class="btn btn-primary w-25" id="reloads">Submit</button>
             </form>
             <h2 class="text-center pt-5">Rider List</h2>
             <div id="rides-list" class="pt-5 w-75 d-flex gap-5">

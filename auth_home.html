@@ -30,7 +30,7 @@
         <section>
             <br>
             <div id="banner">
-                <div class="banner container p-5">
+                <div class="banner container p-5 pt-5">
                     <div class="content">
                         <h1><b><span class="ekrokom_color">Ride</span> <span class="onnorokom_color">Sharing</span></b>
                         </h1>
@@ -55,108 +55,46 @@
     </header>
 
     <main>
-        <section>
-            <h1 class="text-center pt-5">Your Location</h1>
-            <div class="d-flex pt-5 container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img class="w-100 card hovers bg-dark" style="border-radius: 20px;" src="./images/location1.png"
-                            alt="">
-                    </div>
-                    <div class="col-md-6">
-                        <img class="w-100 card hovers" style="border-radius: 20px;" src="./images/location2.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- driver area -->
+        <div class="container pt-5">
+            <h1 class="text-center">Drivers</h1>
+            <div class="row pt-2">
+                <div class="col-md-6">
+                    <h3>Driver List</h3>
+                    <ul id="driver-list" class="list-group">
 
-        <section>
-            <h1 class="text-center pt-5">Our Services</h1>
-            <!-- car -->
-            <div class="d-flex container">
-                <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
-                        <div class="row p-5">
-                            <div class="col-md-6">
-                                <h3 style="color: aquamarine;">Catch-3</h3>
-                                <h5>5 <br> Seats</h5>
-                                <br>
-                                <h5>400 <br> Minimum CC</h5>
-                                <br>
-                                <h5>3400 <br> Minimum CC</h5>
-                            </div>
-                            <div class="col-md-6 pt-4">
-                                <img class="w-100" style="border-radius: 10px;" src="./images/car1.png" alt=""> <br><br>
-                                <button class="btn" style="background-color: aquamarine;">Pick Catch-3</button>
-                            </div>
-                        </div>
-                    </div>
+                    </ul>
                 </div>
-                <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
-                        <div class="row p-5">
-                            <div class="col-md-6">
-                                <h3 style="color: aquamarine;">Catch-5</h3>
-                                <h5>8 <br> Seats</h5>
-                                <br>
-                                <h5>1000 <br> Minimum CC</h5>
-                                <br>
-                                <h5>50000 <br> Minimum CC</h5>
-                            </div>
-                            <div class="col-md-6 pt-4">
-                                <img class="w-100" style="border-radius: 10px;" src="./images/car2.png" alt=""> <br><br>
-                                <button class="btn" style="background-color: aquamarine;">Pick Catch-3</button>
-                            </div>
-                        </div>
+                <div class="col-md-6">
+                    <h3>Driver Details</h3>
+                    <div id="driver-details" class="card bg-dark text-white hovers" style="border-radius: 15px;">
+
                     </div>
                 </div>
             </div>
-            <!-- bike -->
-            <div class="d-flex container">
-                <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
-                        <div class="row p-5">
-                            <div class="col-md-6">
-                                <h3 style="color: aquamarine;">Bike R-15</h3>
-                                <h5>3 <br> Seats</h5>
-                                <br>
-                                <h5>200 <br> Minimum CC</h5>
-                                <br>
-                                <h5>400 <br> Minimum CC</h5>
-                            </div>
-                            <div class="col-md-6 pt-4">
-                                <img class="w-100" style="border-radius: 10px;" src="./images/m-cycle.png" alt="">
-                                <br><br>
-                                <button class="btn" style="background-color: aquamarine;">Pick Catch-3</button>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+        <!-- reider area -->
+        <div class="container pt-5">
+            <h2 class="text-center">Add a Ride</h2>
+            <form id="ride-form" class="card mx-auto w-50 p-4 bg-dark text-white hovers" style="border-radius: 20px;"
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="where_ride_from" class="form-label">Start Location</label>
+                    <input type="text" class="form-control bg-dark text-white" id="where_ride_from" required>
                 </div>
-                <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
-                        <div class="row p-5">
-                            <div class="col-md-6">
-                                <h3 style="color: aquamarine;">Bike Letest</h3>
-                                <h5>3 <br> Seats</h5>
-                                <br>
-                                <h5>100 <br> Minimum CC</h5>
-                                <br>
-                                <h5>120 <br> Minimum CC</h5>
-                            </div>
-                            <div class="col-md-6 pt-4">
-                                <img class="w-100" style="border-radius: 10px;" src="./images/m-cycle1.png" alt="">
-                                <br><br>
-                                <button class="btn" style="background-color: aquamarine;">Pick Catch-3</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="where_ride_to" class="form-label">End Location</label>
+                    <input type="text" class="form-control bg-dark text-white" id="where_ride_to" required>
                 </div>
+                <button type="submit" class="btn btn-primary w-25">Submit</button>
+            </form>
+            <h2 class="text-center pt-5">Rider List</h2>
+            <div id="rides-list" class="pt-5 w-75 d-flex gap-5">
+
             </div>
-        </section>
+        </div>
     </main>
 
-    <br>
-    <br>
     <!-- footer -->
     <div id="footer"></div>
     <script src="./js/footer.js"></script>
@@ -166,6 +104,9 @@
 
     <!-- check js -->
     <script src="./js/check.js"></script>
+
+    <!-- auth home js -->
+    <script src="./js/auth_home.js"></script>
 
     <!-- bootstrap cdn scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

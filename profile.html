@@ -23,9 +23,29 @@
     <div id="navbar"></div>
     <script src="./js/navbar.js"></script>
 
+    <section style="padding-top: 160px;">
+        <h4 class="text-center">Driver Payment</h4>
+        <div class="container card" style="border-radius: 20px;">
+            <table id="payment-table" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="payment-table-body">
+             
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <br>
     <!-- Profile Update -->
     <section>
-        <div class="d-flex container align-items-center gap-5" style="padding-top: 185px;">
+        <h4 class="text-center">Your Profile</h4>
+        <div class="d-flex container align-items-center gap-5 pt-4">
             <div>
                 <img src="images/profile.svg" alt="profile-img" class="profile-img card w-100 hovers bg-dark"
                     style="border-radius: 20px;" />
@@ -74,6 +94,9 @@
 
     <!-- check js -->
     <script src="./js/check.js"></script>
+
+    <!-- auth_home js -->
+    <script src="./js/auth_home.js"></script>
 
     <!-- bootstrap scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

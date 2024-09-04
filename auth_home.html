@@ -30,7 +30,7 @@
         <section>
             <br>
             <div id="banner">
-                <div class="banner container p-5 pt-5">
+                <div class="banner container p-5 pt-5 hovers">
                     <div class="content">
                         <h1><b><span class="ekrokom_color">Ride</span> <span class="onnorokom_color">Sharing</span></b>
                         </h1>
@@ -45,8 +45,7 @@
                         </p>
                     </div>
                     <div>
-                        <img class="w-100 card bg-dark" style="border-radius: 20px;" src="./images/ride.svg"
-                            alt="ride" />
+                        <img class="w-100 card" style="border-radius: 20px;" src="./images/ride.svg" alt="ride" />
                     </div>
                 </div>
             </div>
@@ -67,28 +66,27 @@
                 </div>
                 <div class="col-md-6">
                     <h3>Driver Details</h3>
-                    <div id="driver-details" class="card bg-dark text-white hovers" style="border-radius: 15px;">
+                    <div id="driver-details" class="card bg-light text-dark hovers" style="border-radius: 15px;">
 
                     </div>
                 </div>
             </div>
         </div>
-        <!-- review -->
-        <div id="review-cards-container" class="card w-25">
+        <br>
 
         </div>
         <!-- reider area -->
         <div class="container pt-5">
             <h2 class="text-center">Add a Ride</h2>
-            <form id="ride-form" class="card mx-auto w-50 p-4 bg-dark text-white hovers" style="border-radius: 20px;"
+            <form id="ride-form" class="card mx-auto w-50 p-4 bg-light text-dark hovers" style="border-radius: 20px;"
                 enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="where_ride_from" class="form-label">Start Location</label>
-                    <input type="text" class="form-control bg-dark text-white" id="where_ride_from" required>
+                    <input type="text" class="form-control" id="where_ride_from" required>
                 </div>
                 <div class="mb-3">
                     <label for="where_ride_to" class="form-label">End Location</label>
-                    <input type="text" class="form-control bg-dark text-white" id="where_ride_to" required>
+                    <input type="text" class="form-control" id="where_ride_to" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-25">Submit</button>
             </form>

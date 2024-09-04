@@ -1,10 +1,10 @@
 body {
-    background-color: white !important;
-    background-image: url(..//images/backpad.png);
+    background-color: whitesmoke !important;
+    background-image: url(..//images/bag.png) !important;
 }
 
 .hovers {
-    box-shadow: 4px 4px 8px darkcyan;
+    box-shadow: 4px 4px 8px gray !important;
 }
 
 #navbar-fixed-top {
@@ -42,4 +42,9 @@ body {
 
 #banner {
     padding-top: 10rem;
+}
+
+/* google map */
+#map {
+    height: 500px;
 }

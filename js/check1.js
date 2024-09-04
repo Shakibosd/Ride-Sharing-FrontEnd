@@ -5,3 +5,7 @@ const checks1 = () => {
     }
 }
 window.onload = checks1;
+
+
+
+    

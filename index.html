@@ -26,12 +26,12 @@
             <script src="./js/navbar.js"></script>
         </section>
         <!-- nav area end  -->
-         
+
         <!-- hero section area start -->
         <section>
             <br>
             <div id="banner">
-                <div class="banner container p-5">
+                <div class="banner container p-5 hovers">
                     <div class="content">
                         <h1><b><span class="ekrokom_color">Ride</span> <span class="onnorokom_color">Sharing</span></b>
                         </h1>
@@ -46,8 +46,7 @@
                         </p>
                     </div>
                     <div>
-                        <img class="w-100 card bg-dark" style="border-radius: 20px;" src="./images/ride.svg"
-                            alt="ride" />
+                        <img class="w-100 card" style="border-radius: 20px;" src="./images/ride.svg" alt="ride" />
                     </div>
                 </div>
             </div>
@@ -57,15 +56,16 @@
 
     <main>
         <section>
-            <h1 class="text-center pt-5">Your Location</h1>
-            <div class="d-flex pt-5 container">
+            <h1 class="text-center pt-5">Google Map</h1>
+            <div class="container-fluid container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <img class="w-100 card hovers bg-dark" style="border-radius: 20px;" src="./images/location1.png"
-                            alt="">
+                    <div class="col">
+                     
                     </div>
-                    <div class="col-md-6">
-                        <img class="w-100 card hovers" style="border-radius: 20px;" src="./images/location2.png" alt="">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div id="map"></div>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <!-- car -->
             <div class="d-flex container">
                 <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
+                    <div class="card w-100 hovers" style="border-radius: 20px;">
                         <div class="row p-5">
                             <div class="col-md-6">
                                 <h3 style="color: aquamarine;">Catch-3</h3>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
+                    <div class="card w-100 hovers" style="border-radius: 20px;">
                         <div class="row p-5">
                             <div class="col-md-6">
                                 <h3 style="color: aquamarine;">Catch-5</h3>
@@ -115,7 +115,7 @@
             <!-- bike -->
             <div class="d-flex container">
                 <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
+                    <div class="card w-100 hovers" style="border-radius: 20px;">
                         <div class="row p-5">
                             <div class="col-md-6">
                                 <h3 style="color: aquamarine;">Bike R-15</h3>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="pt-5 container">
-                    <div class="card w-100 hovers bg-dark text-white" style="border-radius: 20px;">
+                    <div class="card w-100 hovers" style="border-radius: 20px;">
                         <div class="row p-5">
                             <div class="col-md-6">
                                 <h3 style="color: aquamarine;">Bike Letest</h3>
@@ -173,6 +173,16 @@
 
     <!-- check js -->
     <script src="./js/check1.js"></script>
+
+
+    <!-- app js -->
+    <script src="./js/app.js"></script>
+
+    <!-- map -->
+
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=createMap&libraries=places" async
+        defer></script>
 
     <!-- bootstrap cdn scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

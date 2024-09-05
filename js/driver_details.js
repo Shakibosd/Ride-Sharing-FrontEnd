@@ -191,17 +191,16 @@ function updateReviewCards() {
                         <p class="card-text"><small class="text-muted">Date : ${review.created_at}</small></p>
                         <div class="d-flex gap-5">
                             <div>
-                                <a class="btn btn-success">Edit</a>
+                                <a class="btn btn-success" onclick="editReview(${review.id})">Edit</a>
                             </div>
                             <div>
-                                <a class="btn btn-danger">Delete</a>
+                                <a class="btn btn-danger" onclick="deleteReview(${review.id})">Delete</a>
                             </div>
                         </div>
                     </div>
         `;
-        reviewCardsContainer.appendChild(card);
-        });
-    })
-    .catch((error) => console.error("Error fetching reviews:", error));
+                reviewCardsContainer.appendChild(card);
+            });
+        })
+        .catch((error) => console.error("Error fetching reviews:", error));
 }
-

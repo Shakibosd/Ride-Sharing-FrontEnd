@@ -119,9 +119,9 @@ function updatePaymentCards() {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${payment.user}</td>
-                    <td>${payment.driver || 'N/A'}</td>
+                    <td>${payment.driver}</td>
                     <td>${payment.amount} ৳</td>
-                    <td>${new Date(payment.timestamp).toLocaleDateString()}</td>
+                    <td>${payment.timestamp}</td>
                 `;
                 tableBody.appendChild(row);
             });

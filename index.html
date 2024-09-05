@@ -14,7 +14,7 @@
     <!-- bootstrap linkup -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- boxines icon     -->
+    <!-- boxines icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -56,16 +56,15 @@
 
     <main>
         <section>
-            <h1 class="text-center pt-5">Google Map</h1>
-            <div class="container-fluid container">
+            <h1 class="text-center pt-5">Your Location</h1>
+            <div class="d-flex pt-5 container">
                 <div class="row">
-                    <div class="col">
-                     
+                    <div class="col-md-6">
+                        <img class="w-100 card hovers bg-dark" style="border-radius: 20px;" src="./images/location1.png"
+                            alt="">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div id="map"></div>
+                    <div class="col-md-6">
+                        <img class="w-100 card hovers" style="border-radius: 20px;" src="./images/location2.png" alt="">
                     </div>
                 </div>
             </div>
@@ -173,16 +172,6 @@
 
     <!-- check js -->
     <script src="./js/check1.js"></script>
-
-
-    <!-- app js -->
-    <script src="./js/app.js"></script>
-
-    <!-- map -->
-
-    <script src="script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=createMap&libraries=places" async
-        defer></script>
 
     <!-- bootstrap cdn scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

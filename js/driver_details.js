@@ -131,8 +131,7 @@ function submitReview(e) {
     e.preventDefault();
     const rating = document.getElementById("rating").value;
     const comment = document.getElementById("comment").value;
-    const reviewCount = document.getElementById("reviewCounts").value;
-    
+
     const token = localStorage.getItem("authToken");
     const user_id = localStorage.getItem("user_id");
 

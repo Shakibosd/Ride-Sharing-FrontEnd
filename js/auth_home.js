@@ -29,7 +29,7 @@ function fetchDrivers() {
             `;
                 driverList.appendChild(listItem);
 
-                // Automatically show details for the first driver in the list
+                // auto show details for the driver list
                 if (index === 0) {
                     fetchDriverDetails(driver.id);
                 }
@@ -65,8 +65,14 @@ function fetchDriverDetails(driverId) {
                     <h6 class="card-text">Availability : ${driver.is_available ? "Available" : "Not Available"}</h6>
                 </div>
                 <div style="padding-top: 7rem;">
-                  <a class="btn btn-primary btn-sm" href="driver_details.html?id=${driverId}">Details</a>
-                  <a class="btn btn-info btn-sm" onclick="showRequestButton(${driver.id})">Request</a>
+                    <div class="d-flex gap-3">
+                        <div>
+                            <a class="btn btn-primary btn-sm" href="driver_details.html?id=${driverId}">Details</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-info btn-sm">Request</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
@@ -76,7 +82,6 @@ function fetchDriverDetails(driverId) {
 
 // Call fetchDrivers on page load
 window.onload = fetchDrivers;
-
 
 // Rider JS
 document.addEventListener("DOMContentLoaded", function () {
@@ -131,7 +136,7 @@ function addRide() {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `token ${token}`,
+            Authorization: `Token ${token}`, // Ensure "Token" is capitalized
         },
         body: JSON.stringify({
             where_ride_from: where_ride_from,
@@ -159,3 +164,43 @@ function addRide() {
 }
 
 fetchDrivers();
+
+
+// function requestRide(rideId) {
+//     const token = localStorage.getItem("authToken");
+
+//     fetch('http://127.0.0.1:8000/rides/requests/', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: `Token ${token}`
+//         },
+//         body: JSON.stringify({
+//             ride_id: rideId
+//         })
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             alert('Ride request sent successfully!');
+//         })
+//         .catch(error => console.error('Error requesting ride:', error));
+// }
+
+
+// function acceptRideRequest(requestId) {
+//     const token = localStorage.getItem("authToken");
+
+//     fetch(`http://127.0.0.1:8000/rides/requests/${requestId}/accept/`, {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: `Token ${token}`
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             alert('Ride request accepted!');
+//             document.querySelector(`#request-status-${requestId}`).textContent = 'Accepted';
+//         })
+//         .catch(error => console.error('Error accepting ride request:', error));
+// }

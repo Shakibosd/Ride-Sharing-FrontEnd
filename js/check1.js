@@ -8,4 +8,3 @@ window.onload = checks1;
 
 
 
-    

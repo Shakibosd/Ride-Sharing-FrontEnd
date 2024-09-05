@@ -1,5 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
-const driverId = urlParams.get('id');
+const driverId = urlParams.get("id");
 
 function fetchDriverDetails(driverId) {
     const token = localStorage.getItem("authToken");
@@ -36,6 +36,7 @@ function fetchDriverDetails(driverId) {
                         <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
                     </div>
                 </div>
+               
                 <!-- Modal 1 -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -63,7 +64,6 @@ function fetchDriverDetails(driverId) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-dark">
-                        <form>
                             <div class="mb-3">
                             <label for="rating">Rate This</label>
                             <select id="rating" name="rating" class="form-control" required>
@@ -80,11 +80,40 @@ function fetchDriverDetails(driverId) {
                             <textarea class="form-control" id="comment" placeholder="Please Enter Your Comment Here"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" onclick="submitReview(event)">Submit</button>
-                        </form>
                     </div>
                 </div>
             </div>
-            `;
+        </div>
+         <!--edit and delete review-->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Review</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        <div class="mb-3">
+                            <label for="edit-rating">Rate This</label>
+                            <select id="edit-rating" name="rating" class="form-control" required>
+                                <option value="" selected>Select a rating</option>
+                                <option value="1">⭐</option>
+                                <option value="2">⭐⭐</option>
+                                <option value="3">⭐⭐⭐</option>
+                                <option value="4">⭐⭐⭐⭐</option>
+                                <option value="5">⭐⭐⭐⭐⭐</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-comment">Comment</label>
+                            <textarea class="form-control" id="edit-comment" placeholder="Please Enter Your Comment Here"></textarea>
+                        </div>
+                        <input type="hidden" id="edit-review-id">
+                        <button type="button" class="btn btn-primary" onclick="updateReviewDetails()">Update</button>
+                    </div>
+                </div>
+            </div>
+        `;
         })
         .catch((error) => console.error("Error fetching driver details:", error));
 }
@@ -204,3 +233,111 @@ function updateReviewCards() {
         })
         .catch((error) => console.error("Error fetching reviews:", error));
 }
+
+//edit and delete review
+function editReview(reviewId) {
+    // Fetch review details
+    const token = localStorage.getItem("authToken");
+
+    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch review details.");
+            }
+            return response.json();
+        })
+        .then((review) => {
+            // Populate modal with review details
+            document.getElementById("edit-rating").value = review.rating.replace(/⭐+/g, star => star.length);
+            document.getElementById("edit-comment").value = review.comment;
+            document.getElementById("edit-review-id").value = review.id;
+            new bootstrap.Modal(document.getElementById("editModal")).show();
+        })
+        .catch((error) => console.error("Error fetching review:", error));
+}
+
+function updateReviewDetails() {
+    const token = localStorage.getItem("authToken");
+    const reviewId = document.getElementById("edit-review-id").value;
+    const rating = document.getElementById("edit-rating").value;
+    const comment = document.getElementById("edit-comment").value;
+
+    // Map numeric rating to star rating
+    const starRatingsMap = {
+        "1": "⭐",
+        "2": "⭐⭐",
+        "3": "⭐⭐⭐",
+        "4": "⭐⭐⭐⭐",
+        "5": "⭐⭐⭐⭐⭐",
+    };
+
+    const starRating = starRatingsMap[parseInt(rating)];
+
+    if (!starRating || !comment) {
+        alert("Please provide both a rating and a comment.");
+        return;
+    }
+
+    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+        },
+        body: JSON.stringify({
+            rating: starRating,
+            comment: comment,
+        }),
+    })
+        .then(async (response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                const err = await response.json();
+                console.error("Server response error:", err);
+                alert("Failed to update review");
+                throw new Error("Failed to update review");
+            }
+        })
+        .then((data) => {
+            console.log("Review updated:", data);
+            alert("Review updated successfully!");
+            updateReviewCards();  
+            bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
+        })
+        .catch((error) => {
+            console.error("Error updating review:", error);
+            alert("Failed to update review. Please try again.");
+        });
+}
+
+function deleteReview(reviewId) {
+    const token = localStorage.getItem("authToken");
+
+    if (confirm("Are you sure you want to delete this review?")) {
+        fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `token ${token}`,
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to delete review.");
+                }
+                alert("Review deleted successfully!");
+                updateReviewCards();
+            })
+            .catch((error) => {
+                console.error("Error deleting review:", error);
+                alert("Failed to delete review. Please try again.");
+            });
+    }
+};

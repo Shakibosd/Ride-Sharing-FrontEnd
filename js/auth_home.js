@@ -66,7 +66,7 @@ function fetchDriverDetails(driverId) {
                 </div>
                 <div style="padding-top: 7rem;">
                   <a class="btn btn-primary btn-sm" href="driver_details.html?id=${driverId}">Details</a>
-                  <a class="btn btn-info btn-sm" onclick="showRequestButton(${driver.id})">${driver.user} Request</a>
+                  <a class="btn btn-info btn-sm" onclick="showRequestButton(${driver.id})">Request</a>
                 </div>
             </div>
         `;

@@ -117,6 +117,7 @@ function updatePaymentCards() {
             // Display payment data for the logged-in user only
             data.forEach((payment) => {
                 const row = document.createElement("tr");
+                console.log(payment);
                 row.innerHTML = `
                     <td>${payment.user}</td>
                     <td>${payment.driver}</td>

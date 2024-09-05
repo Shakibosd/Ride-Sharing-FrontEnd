@@ -121,21 +121,18 @@ if (driverId) {
     fetchDriverDetails(driverId);
 }
 
-const reviewCount = (rev) => {
-    const abd = document.getElementById("reviewCounts");
-    abd.innerHTML = `${rev.length}`; 
-};
-
 
 //review rating
 
 //function call to update review
 updateReviewCards();
 
-function submitReview(e) {
-    e.preventDefault();
+function submitReview(rev) {
+    // e.preventDefault();
     const rating = document.getElementById("rating").value;
     const comment = document.getElementById("comment").value;
+    const reviewCount = document.getElementById("reviewCounts").value;
+    
     const token = localStorage.getItem("authToken");
     const user_id = localStorage.getItem("user_id");
 
@@ -213,6 +210,7 @@ function updateReviewCards() {
         .then((data) => {
             const reviewCardsContainer = document.getElementById("review-cards-container");
             reviewCardsContainer.innerHTML = "";
+            document.getElementById("reviewCounts").innerHTML = data.length;
             data.forEach((review) => {
                 const card = document.createElement("div");
                 card.classList.add("card", "mb-3", "bg-light", "text-dark", "hovers");

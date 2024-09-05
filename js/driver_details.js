@@ -36,7 +36,6 @@ function fetchDriverDetails(driverId) {
                         <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
                     </div>
                 </div>
-               
                 <!-- Modal 1 -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -121,6 +120,11 @@ function fetchDriverDetails(driverId) {
 if (driverId) {
     fetchDriverDetails(driverId);
 }
+
+const reviewCount = (rev) => {
+    const abd = document.getElementById("reviewCounts");
+    abd.innerHTML = `${rev.length}`; 
+};
 
 
 //review rating
@@ -214,7 +218,7 @@ function updateReviewCards() {
                 card.classList.add("card", "mb-3", "bg-light", "text-dark", "hovers");
                 card.style.borderRadius = "10px";
                 card.innerHTML = `
-                    <div class="card-body">
+                    <div class="card w-100 p-3">
                         <h5 class="card-title">Rating : ${review.rating}</h5>
                         <p class="card-text">Comment : ${review.comment}</p>
                         <p class="card-text"><small class="text-muted">Date : ${review.created_at}</small></p>
@@ -233,6 +237,7 @@ function updateReviewCards() {
         })
         .catch((error) => console.error("Error fetching reviews:", error));
 }
+
 
 //edit and delete review
 function editReview(reviewId) {
@@ -308,7 +313,7 @@ function updateReviewDetails() {
         .then((data) => {
             console.log("Review updated:", data);
             alert("Review updated successfully!");
-            updateReviewCards();  
+            updateReviewCards();
             bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
         })
         .catch((error) => {
@@ -341,3 +346,5 @@ function deleteReview(reviewId) {
             });
     }
 };
+
+reviewCount(rev);

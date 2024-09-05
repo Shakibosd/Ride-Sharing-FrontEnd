@@ -52,14 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
 updatePaymentCards();
 
 //submit payment
-function submitPayment() {
+function submitPayment(driverId) {
     const amount = document.getElementById("amount").value;
 
     const user_id = localStorage.getItem("user_id");
     const token = localStorage.getItem("authToken");
+
     console.log({
         user: user_id,
         amount: amount,
+        driver: driverId
     });
     fetch("http://127.0.0.1:8000/payments/payments/", {
         method: "POST",
@@ -70,6 +72,7 @@ function submitPayment() {
         body: JSON.stringify({
             user: parseInt(user_id),
             amount: parseFloat(amount),
+            driver: driverId
         }),
     })
         .then(async (response) => {

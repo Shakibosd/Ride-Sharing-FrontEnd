@@ -127,8 +127,8 @@ if (driverId) {
 //function call to update review
 updateReviewCards();
 
-function submitReview(rev) {
-    // e.preventDefault();
+function submitReview(e) {
+    e.preventDefault();
     const rating = document.getElementById("rating").value;
     const comment = document.getElementById("comment").value;
     const reviewCount = document.getElementById("reviewCounts").value;
@@ -158,7 +158,7 @@ function submitReview(rev) {
         alert("Invalid rating value.");
         return;
     }
-    fetch("http://127.0.0.1:8000/reviews/reviews/", {
+    fetch(`http://127.0.0.1:8000/reviews/reviews/${driverId}/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -194,7 +194,7 @@ function submitReview(rev) {
 function updateReviewCards() {
     const token = localStorage.getItem("authToken");
 
-    fetch("http://127.0.0.1:8000/reviews/reviews_get/", {
+    fetch(`http://127.0.0.1:8000/reviews/reviews_get/${driverId}/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

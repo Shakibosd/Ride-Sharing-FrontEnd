@@ -82,6 +82,9 @@ function fetchDriverDetails(driverId) {
                         <div>
                             <a class="btn btn-primary btn-sm" href="driver_details.html?id=${driverId}">Details</a>
                         </div>
+                        <div>
+                             <button class="btn btn-info btn-sm" onclick="acceptRideRequest(${driverId})">Rider Request</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,24 +147,24 @@ function addRide() {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Token ${token}`,
+            Authorization: `token ${token}`,
         },
         body: JSON.stringify({
             where_ride_from: where_ride_from,
             where_ride_to: where_ride_to,
         }),
     })
-        .then((response) => {
+        .then(async (response) => {
             if (!response.ok) {
-                return response.json().then((err) => {
-                    console.error("Server response error:", err);
-                    throw new Error("Failed to add ride");
-                });
+                const err = await response.json();
+                console.error("Server response error:", err);
+                throw new Error("Failed to add ride");
             }
             return response.json();
         })
         .then((data) => {
-            fetchRides();
+            console.log(data);
+            alert("Ride Request Submitted!");
         })
         .catch((error) => {
             console.error("Error adding ride:", error);
@@ -169,70 +172,54 @@ function addRide() {
         });
 }
 
-const token = localStorage.getItem("authToken");
-function requestRide(rideId) {
-    if (!token) {
-        alert("You must be logged in to request a ride.");
-        return;
-    }
-    fetch("http://127.0.0.1:8000/rides/requests/", {
-        method: "POST",
+// Display Ride Card (Pending Status)
+function displayRideCard(ride) {
+    const rideContainer = document.getElementById("ride-container");
+    const rideCard = document.createElement("div");
+    rideCard.className = "card mt-3";
+    rideCard.innerHTML = `
+        <div class="card-body">
+            <h5 class="card-title">Ride Request</h5>
+            <p class="card-text">From: ${ride.where_ride_from}</p>
+            <p class="card-text">To: ${ride.where_ride_to}</p>
+            <p class="card-text status">Status: <span>Pending</span></p>
+        </div>
+    `;
+    rideContainer.appendChild(rideCard);
+}
+
+function acceptRideRequest(rideId) {
+    const token = localStorage.getItem("authToken");
+    fetch(`http://127.0.0.1:8000/rides/requests/${rideId}/`, {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: `token ${token}`,
         },
         body: JSON.stringify({
-            ride_id: rideId,
+            status: "Accepted",
         }),
     })
-        .then(response => {
+        .then((response) => {
             if (!response.ok) {
-                throw new Error("Failed to request ride.");
+                throw new Error("Failed to accept the rider request.");
             }
             return response.json();
         })
-        .then(data => {
-            alert("Ride request sent successfully!");
-            document.querySelector(`#request-status-${rideId}`).textContent = "Pending";
+        .then((data) => {
+            alert("Ride Request Accepted!");
+            updateRideCardStatus("Accepted");
         })
-        .catch(error => {
-            console.error("Error requesting ride:", error);
-            alert("Error requesting ride. Please try again.");
+        .catch((error) => {
+            console.error("Error accepting ride request:", error);
+            alert("Failed to accept the rider request. Please try again.");
         });
 }
 
-
-function acceptRideRequest(rideId) {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-        alert("You must be logged in to accept a ride request.");
-        return;
+function updateRideCardStatus(newStatus) {
+    const statusElement = document.querySelector(".card-text.status span");
+    if (statusElement) {
+        statusElement.textContent = newStatus;
     }
-
-    console.log(`Accepting ride request with ID: ${rideId}`);
-    fetch(`http://127.0.0.1:8000/rides/requests/${rideId}/`, { 
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `token ${token}`, 
-        },
-        body: JSON.stringify({
-            status: "Ride Completed",
-        }),
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to accept ride request.");
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert("Ride request accepted successfully!");
-            document.querySelector(`#request-status-${rideId}`).textContent = "Ride Completed";
-        })
-        .catch(error => {
-            console.error("Error accepting ride request:", error);
-            alert("Error accepting ride request. Please try again.");
-        });
 }
 

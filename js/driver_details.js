@@ -83,7 +83,7 @@ function fetchDriverDetails(driverId) {
                 </div>
             </div>
         </div>
-         <!--edit and delete review-->
+                 <!--edit and delete review-->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -221,7 +221,7 @@ function updateReviewCards() {
                         <p class="card-text"><small class="text-muted">Date : ${review.created_at}</small></p>
                         <div class="d-flex gap-5">
                             <div>
-                                <a class="btn btn-success" onclick="editReview(${review.id})">Edit</a>
+                                <a class="btn btn-success" onclick="editReview(${review})">Edit</a>
                             </div>
                             <div>
                                 <a class="btn btn-danger" onclick="deleteReview(${review.id})">Delete</a>
@@ -331,17 +331,16 @@ function deleteReview(reviewId) {
             },
         })
             .then((response) => {
-                if (!response.ok) {
+                if (response.ok) {
+                    alert("Review deleted successfully!");
+                    updateReviewCards();
+                } else {
                     throw new Error("Failed to delete review.");
                 }
-                alert("Review deleted successfully!");
-                updateReviewCards();
             })
             .catch((error) => {
                 console.error("Error deleting review:", error);
                 alert("Failed to delete review. Please try again.");
             });
     }
-};
-
-reviewCount(rev);
+}

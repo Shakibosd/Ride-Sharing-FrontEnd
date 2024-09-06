@@ -5,7 +5,7 @@ let markers = [
     {
         coordinates: { lat: 53.46283320275885, lng: -2.248211115991157 },
         iconImage: 'https://img.icons8.com/fluent/48/000000/marker-storm.png',
-        content: '<h5>Hulme</h5>'
+        content: '<h5>Habiganj, Bangladesh</h5>'
     },
     {
         coordinates: { lat: 53.463842391942, lng: -2.247733682839402 }

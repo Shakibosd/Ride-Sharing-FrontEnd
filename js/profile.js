@@ -47,22 +47,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-// Call function to update payment 
+// Call function to update payment
 updatePaymentCards();
 
 //submit payment
 function submitPayment(driverId) {
-    const amount = document.getElementById("amount").value;
+    const amountInput = document.getElementById("amount").value;
+    const amount = parseFloat(amountInput);
+    const parHourRate = 200; 
 
+    // Validate the payment amount
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+    if (amount > parHourRate) {
+        alert("You are paying more than the required amount.");
+        return;
+    } 
+    else if (amount < parHourRate) {
+        alert("You are paying less than the required amount.");
+        return;
+    } else {
+        alert("Payment amount successfully!");
+    }
+
+    // Fetch user ID and token from localStorage
     const user_id = localStorage.getItem("user_id");
     const token = localStorage.getItem("authToken");
 
+    // debugging
     console.log({
         user: user_id,
         amount: amount,
-        driver: driverId
+        driver: driverId,
     });
+
+    // Send payment data
     fetch("http://127.0.0.1:8000/payments/payments/", {
         method: "POST",
         headers: {
@@ -72,7 +93,7 @@ function submitPayment(driverId) {
         body: JSON.stringify({
             user: parseInt(user_id),
             amount: parseFloat(amount),
-            driver: driverId
+            driver: driverId,
         }),
     })
         .then(async (response) => {
@@ -86,7 +107,7 @@ function submitPayment(driverId) {
         })
         .then((data) => {
             console.log("Payment submitted:", data);
-            alert("Payment successful!");
+            // Redirect or update UI as needed
             window.location.href = "./profile.html";
             updatePaymentCards();
         })

@@ -125,7 +125,7 @@ function displayRides(rides) {
             <p class="card-text">Where Ride To : ${ride.where_ride_to}</p>
             <p class="card-text">Status : 
                 <span id="request-status-${ride.id}" class="btn btn-secondary btn-sm">
-                    ${ride.status === "Pending" ? "Pending" : ride.status}
+                    ${ride.status === "Ride Complited" ? "Pending" : ride.status}
                 </span>
             </p>
             <p class="card-text">
@@ -172,22 +172,6 @@ function addRide() {
         });
 }
 
-// Display Ride Card (Pending Status)
-function displayRideCard(ride) {
-    const rideContainer = document.getElementById("ride-container");
-    const rideCard = document.createElement("div");
-    rideCard.className = "card mt-3";
-    rideCard.innerHTML = `
-        <div class="card-body">
-            <h5 class="card-title">Ride Request</h5>
-            <p class="card-text">From: ${ride.where_ride_from}</p>
-            <p class="card-text">To: ${ride.where_ride_to}</p>
-            <p class="card-text status">Status: <span>Pending</span></p>
-        </div>
-    `;
-    rideContainer.appendChild(rideCard);
-}
-
 function acceptRideRequest(rideId) {
     const token = localStorage.getItem("authToken");
     fetch(`http://127.0.0.1:8000/rides/requests/${rideId}/`, {
@@ -207,6 +191,7 @@ function acceptRideRequest(rideId) {
             return response.json();
         })
         .then((data) => {
+            console.log(data);
             alert("Ride Request Accepted!");
             updateRideCardStatus("Accepted");
         })

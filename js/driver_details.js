@@ -136,13 +136,13 @@ function submitReview(e) {
     const user_id = localStorage.getItem("user_id");
 
     const starRatingsMap = {
-        "1": "⭐",
-        "2": "⭐⭐",
-        "3": "⭐⭐⭐",
-        "4": "⭐⭐⭐⭐",
-        "5": "⭐⭐⭐⭐⭐",
+        1: "⭐",
+        2: "⭐⭐",
+        3: "⭐⭐⭐",
+        4: "⭐⭐⭐⭐",
+        5: "⭐⭐⭐⭐⭐",
     };
-    const starRating = starRatingsMap[parseInt(rating)];    
+    const starRating = starRatingsMap[parseInt(rating)];
     if (!rating || !comment) {
         alert("Please provide both a rating and a comment.");
         return;
@@ -184,10 +184,6 @@ function submitReview(e) {
             updateReviewCards();
             bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
         })
-        .catch((error) => {
-            console.error("Error submitting review:", error);
-            alert("Failed to submit review. Please try again.");
-        });
 }
 
 function updateReviewCards() {
@@ -290,26 +286,13 @@ function updateReviewDetails() {
             rating: starRating,
             comment: comment,
         }),
-    })
-        .then(async (response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                const err = await response.json();
-                console.error("Server response error:", err);
-                alert("Failed to update review");
-                throw new Error("Failed to update review");
-            }
-        })
-        .then((data) => {
-            console.log("Review updated:", data);
+    }).then(async (response) => {
+        if (response.ok) {
             alert("Review updated successfully!");
             updateReviewCards();
-        })
-        .catch((error) => {
-            console.error("Error updating review:", error);
-            alert("Failed to update review. Please try again.");
-        });
+            return response.json();
+        }
+    });
 }
 
 function editReview(reviewId) {
@@ -333,8 +316,7 @@ function editReview(reviewId) {
             document.getElementById("edit-comment").value = review.comment;
             document.getElementById("edit-review-id").value = review.id;
             new bootstrap.Modal(document.getElementById("editModal")).show();
-        })
-        .catch((error) => console.error("Error fetching review:", error));
+        });
 }
 
 function deleteReview(reviewId) {

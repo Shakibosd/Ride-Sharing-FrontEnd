@@ -156,7 +156,7 @@ function submitReview(e) {
         alert("Invalid rating value.");
         return;
     }
-    fetch(`http://127.0.0.1:8000/reviews/driver/${driverId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/review_list_create/${driverId}/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -189,7 +189,7 @@ function submitReview(e) {
 function updateReviewCards() {
     const token = localStorage.getItem("authToken");
 
-    fetch(`http://127.0.0.1:8000/reviews/reviews_get/${driverId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/reviews_detail_get/${driverId}/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -239,7 +239,7 @@ updateReviewCards();
 function prepareEditModal(reviewId) {
     const token = localStorage.getItem("authToken");
 
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -276,7 +276,7 @@ function updateReviewDetails() {
         return;
     }
 
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -298,7 +298,7 @@ function updateReviewDetails() {
 function editReview(reviewId) {
     const token = localStorage.getItem("authToken");
 
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -323,7 +323,7 @@ function deleteReview(reviewId) {
     const token = localStorage.getItem("authToken");
 
     if (confirm("Are you sure you want to delete this review?")) {
-        fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+        fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

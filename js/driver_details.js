@@ -136,18 +136,17 @@ function submitReview(e) {
     const user_id = localStorage.getItem("user_id");
 
     const starRatingsMap = {
-        1: "⭐",
-        2: "⭐⭐",
-        3: "⭐⭐⭐",
-        4: "⭐⭐⭐⭐",
-        5: "⭐⭐⭐⭐⭐",
+        "1": "⭐",
+        "2": "⭐⭐",
+        "3": "⭐⭐⭐",
+        "4": "⭐⭐⭐⭐",
+        "5": "⭐⭐⭐⭐⭐",
     };
+    const starRating = starRatingsMap[parseInt(rating)];    
     if (!rating || !comment) {
         alert("Please provide both a rating and a comment.");
         return;
     }
-
-    const starRating = starRatingsMap[parseInt(rating)];
     console.log({
         user: parseInt(user_id),
         rating: starRating,
@@ -157,7 +156,7 @@ function submitReview(e) {
         alert("Invalid rating value.");
         return;
     }
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${driverId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/driver/${driverId}/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -183,6 +182,7 @@ function submitReview(e) {
             console.log("Review submitted:", data);
             alert("Review submitted successfully!");
             updateReviewCards();
+            bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
         })
         .catch((error) => {
             console.error("Error submitting review:", error);
@@ -340,28 +340,20 @@ function editReview(reviewId) {
 function deleteReview(reviewId) {
     const token = localStorage.getItem("authToken");
 
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `token ${token}`,
-        },
-    })
-        .then((response) => {
+    if (confirm("Are you sure you want to delete this review?")) {
+        fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `token ${token}`,
+            },
+        }).then((response) => {
             if (!response.ok) {
                 throw new Error("Failed to delete review.");
             }
-            return response.json();
-        })
-        .then(() => {
-            alert("Review deleted successfully!");
             updateReviewCards();
-        })
-        .catch((error) => {
-            console.error("Error deleting review:", error);
-            alert("Failed to delete review. Please try again.");
+            alert("Review deleted successfully!");
+            return response.json();
         });
+    }
 }
-
-
-

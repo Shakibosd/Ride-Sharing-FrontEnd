@@ -88,7 +88,7 @@ function fetchDriverDetails(driverId) {
                 </div>
             </div>
         </div>
-         <!--edit and delete review-->
+          <!--edit and delete review-->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -127,10 +127,6 @@ if (driverId) {
 }
 
 //review rating
-
-//function call to update review
-updateReviewCards();
-
 function submitReview(e) {
     e.preventDefault();
     const rating = document.getElementById("rating").value;
@@ -228,10 +224,10 @@ function updateReviewCards() {
                         <div class="d-flex gap-5">
                             <div>
                                <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"
-                                onclick="editReview(${review.id})">Edit</a>
+                                >Edit</a>
                             </div>
                             <div>
-                                <a class="btn btn-danger" onclick="deleteReview(${review.id})">Delete</a>
+                                <a class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -241,60 +237,5 @@ function updateReviewCards() {
         })
         .catch((error) => console.error("Error fetching reviews:", error));
 }
-
-//edit and delete review
-function editReview(reviewId) {
-    const token = localStorage.getItem("authToken");
-
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `token ${token}`,
-        },
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Failed to fetch review details.");
-            }
-            return response.json();
-        })
-        .then((review) => {
-            document.getElementById("edit-rating").value = review.rating;
-            document.getElementById("edit-comment").value = review.comment;
-            document.getElementById("edit-review-id").value = review.id;
-            new bootstrap.Modal(document.getElementById("editModal")).show();
-        })
-        .catch((error) => console.error("Error fetching review:", error));
-}
-
-function deleteReview(reviewId) {
-    const token = localStorage.getItem("authToken");
-
-    fetch(`http://127.0.0.1:8000/reviews/reviews/${reviewId}/`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-    })
-        .then(async (response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                const err = await response.json();
-                console.error("Server response error:", err);
-                alert("Failed to delete review.");
-                throw new Error("Failed to delete review");
-            }
-        })
-        .then((data) => {
-            console.log("Review deleted:", data);
-            alert("Review deleted successfully!");
-            updateReviewCards();
-        })
-        .catch((error) => {
-            console.error("Error deleting review:", error);
-            alert("Failed to delete review. Please try again.");
-        });
-}
+//function call to update review
+updateReviewCards();

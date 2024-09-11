@@ -61,48 +61,65 @@
             <p id="directions"></p>
         </section>
 
-        <!-- driver area -->
-        <div class="container pt-5">
-            <h1 class="text-center">Drivers</h1>
-            <div class="row pt-2">
-                <div class="col-md-6">
-                    <h3>Driver List</h3>
-                    <ul id="driver-list" class="list-group">
 
-                    </ul>
+        <!-- ride sharign vedio -->
+        <section class="pt-4">
+            <h1 class="text-center">How To Share A Ride</h1>
+            <div class="pt-4 w-50 mx-auto">
+                <div class="banner2">
+                    <video style="border-radius: 20px;" width="530" height="300" controls>
+                        <source src="./images/y2mate.com - What is carpool and ridesharing_v720P.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="col-md-6">
-                    <h3>Driver Details</h3>
-                    <div id="driver-details" class="card bg-light text-dark hovers" style="border-radius: 15px;">
+            </div>
+        </section>
 
+        <!-- driver area -->
+        <section>
+            <div class="container pt-5">
+                <h1 class="text-center">Drivers</h1>
+                <div class="row pt-2">
+                    <div class="col-md-6">
+                        <h3>Driver List</h3>
+                        <ul id="driver-list" class="list-group">
+
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Driver Details</h3>
+                        <div id="driver-details" class="card bg-light text-dark hovers" style="border-radius: 15px;">
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         <br>
 
         </div>
         <!-- reider area -->
-        <div class="container pt-5">
-            <h2 class="text-center">Add a Ride</h2>
-            <br>
-            <form id="ride-form" class="card mx-auto w-50 p-4 bg-light text-dark hovers" style="border-radius: 20px;"
-                enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="where_ride_from" class="form-label">Start Location</label>
-                    <input type="text" class="form-control" id="where_ride_from" required>
-                </div>
-                <div class="mb-3">
-                    <label for="where_ride_to" class="form-label">End Location</label>
-                    <input type="text" class="form-control" id="where_ride_to" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-25">Submit</button>
-            </form>
-            <h2 class="text-center pt-5">Rider List</h2>
-            <div id="rides-list" class="pt-4 w-75 d-flex gap-5">
+        <section>
+            <div class="container pt-5">
+                <h2 class="text-center">Add a Ride</h2>
+                <br>
+                <form id="ride-form" class="card mx-auto w-50 p-4 bg-light text-dark hovers"
+                    style="border-radius: 20px;" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="where_ride_from" class="form-label">Start Location</label>
+                        <input type="text" class="form-control" id="where_ride_from" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="where_ride_to" class="form-label">End Location</label>
+                        <input type="text" class="form-control" id="where_ride_to" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-25">Submit</button>
+                </form>
+                <h2 class="text-center pt-5">Rider List</h2>
+                <div id="rides-list" class="pt-4 w-75 d-flex gap-5">
 
+                </div>
             </div>
-        </div>
+        </section>
     </main>
     <br>
     <!-- footer -->

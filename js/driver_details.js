@@ -33,7 +33,7 @@ function fetchDriverDetails(driverId) {
                 <br>
                 <div class="d-flex gap-4">
                      <div>
-                        <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="preparePaymentModal(${driver.id})">Bill Pay</a>
+                        <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" >Bill Pay</a>
                     </div>
                     <div>
                         <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
@@ -52,8 +52,7 @@ function fetchDriverDetails(driverId) {
                                 <label for="amount" class="form-label">Amount</label>
                                 <input type="number" class="form-control" id="amount" placeholder="Please Driver Amount Pay" required>
                             </div>
-                            <button class="btn btn-primary" onclick="submitPayment(${driver.id
-                })">Submit</button>
+                            <button class="btn btn-primary" onclick="submitPayment(${driver.id});">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -124,30 +123,6 @@ function fetchDriverDetails(driverId) {
 if (driverId) {
     fetchDriverDetails(driverId);
 }
-
-
-function handlePayment(rideId, status, driverId) {
-    if (status === "Pending") {
-        alert("Payment is not allowed while the status is Pending.");
-    } else if (status === "Complete") {
-        preparePaymentModal(driverId); // Proceed to the payment modal if the status is Complete
-    }
-}
-
-function handleReview(rideId, status) {
-    if (status === "Pending") {
-        alert("Review is not allowed while the status is Pending.");
-    } else if (status === "Complete") {
-        // Code to open the review modal or perform the review action
-        $('#exampleModal2').modal('show'); // Showing the review modal as an example
-    }
-}
-
-function preparePaymentModal(driverId) {
-    // Your existing logic for preparing the payment modal
-    console.log("Preparing payment modal for driver ID:", driverId);
-}
-
 
 //review rating
 function submitReview(e) {

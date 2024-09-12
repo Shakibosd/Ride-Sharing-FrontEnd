@@ -172,39 +172,5 @@ function addRide() {
         });
 }
 
-function acceptRideRequest(rideId) {
-    const token = localStorage.getItem("authToken");
-    fetch(`http://127.0.0.1:8000/rides/requests/${rideId}/`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `token ${token}`,
-        },
-        body: JSON.stringify({
-            status: "Accepted",
-        }),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Failed to accept the rider request.");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            alert("Ride Request Accepted!");
-            updateRideCardStatus("Accepted");
-        })
-        .catch((error) => {
-            console.error("Error accepting ride request:", error);
-            alert("Failed to accept the rider request. Please try again.");
-        });
-}
 
-function updateRideCardStatus(newStatus) {
-    const statusElement = document.querySelector(".card-text.status span");
-    if (statusElement) {
-        statusElement.textContent = newStatus;
-    }
-}
 

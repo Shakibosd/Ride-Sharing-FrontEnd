@@ -21,15 +21,13 @@ function fetchDriverDetails(driverId) {
                 "driver-details-content"
             );
             driverDetailsContent.innerHTML = `
-                <h4>Phone: ${driver.phone_number}</h4>
-                <h4>Email: ${driver.email}</h4>
-                <h4>Driving Licence: ${driver.driving_licence}</h4>
-                <h4>Number Plate: ${driver.number_plate}</h4>
-                <h4>Par Hours: ${driver.par_hours} ৳</h4>
-                <h4>Where Ride From: ${driver.where_ride_from}</h4>
-                <h4>Where Ride To: ${driver.where_ride_to}</h4>
-                <h4>Availability: ${driver.is_available ? "Available" : "Not Available"
-                }</h4>
+                <h4>Phone : ${driver.phone_number}</h4>
+                <h4>Email : ${driver.email}</h4>
+                <h4>Driving Licence : <span class="btn btn-secondary">${driver.driving_licence}</span></h4>
+                <h4>Number Plate : ${driver.number_plate}</h4>
+                <h4>Par Hours : ${driver.par_hours} ৳</h4>
+                <h4>Availability : <span class="btn btn-secondary">${driver.is_available ? "Driver Available!" : "Not Available"
+                }</span></h4>
                 <br>
                 <div class="d-flex gap-4">
                      <div>
@@ -52,7 +50,8 @@ function fetchDriverDetails(driverId) {
                                 <label for="amount" class="form-label">Amount</label>
                                 <input type="number" class="form-control" id="amount" placeholder="Please Driver Amount Pay" required>
                             </div>
-                            <button class="btn btn-primary" onclick="submitPayment(${driver.id});">Submit</button>
+                            <button class="btn btn-primary" onclick="submitPayment(${driver.id
+                });">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -181,7 +180,7 @@ function submitReview(e) {
             alert("Review submitted successfully!");
             updateReviewCards();
             bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
-        })
+        });
 }
 
 function updateReviewCards() {
@@ -337,3 +336,74 @@ function deleteReview(reviewId) {
         });
     }
 }
+
+//rider request
+document.addEventListener("DOMContentLoaded", fetchRides);//fetch reide function all load
+function fetchRides() {
+    const token = localStorage.getItem("authToken");
+    fetch("http://127.0.0.1:8000/rides/rides/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const rideRequests = document.getElementById("ride-requests");
+            rideRequests.innerHTML = "";
+            data.forEach((ride) => {
+                const row = document.createElement("tr");
+                const isAccepted = localStorage.getItem(`ride-${ride.id}-accepted`);
+
+                row.innerHTML = `
+                    <td>${ride.driver ? ride.driver : "Driver Not Accept Your Request"}</td>
+                    <td>${ride.where_ride_from}</td>
+                    <td>${ride.where_ride_to}</td>
+                    <td>${ride.status || "Pending"}</td> 
+                    <td>
+                        <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}" onclick="acceptRide(${ride.id})" ${isAccepted ? 'disabled' : ''}>
+                            ${isAccepted ? 'Accepted' : 'Accept'}
+                        </button>
+                    </td>
+                `;
+                rideRequests.appendChild(row);
+            });
+        })
+        .catch((error) => console.error("Error fetching rides:", error));
+}
+function acceptRide(rideId) {
+    console.log(`Ride with ID ${rideId} accepted.`);
+    const button = document.getElementById(`accept-btn-${rideId}`);
+    button.textContent = 'Accepted';  
+    button.disabled = true; 
+
+    // Save the ride ID to localStorage
+    localStorage.setItem(`ride-${rideId}-accepted`, 'true');
+
+    const token = localStorage.getItem("authToken");
+    fetch(`http://127.0.0.1:8000/rides/accept/${rideId}/`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+        },
+    })
+        .then(async (response) => {
+            if (!response.ok) {
+                const err = await response.json();
+                console.error("Server response error:", err);
+                throw new Error("Failed to accept ride");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            alert("Ride request accepted successfully!");
+        })
+        .catch((error) => {
+            console.error("Error accepting ride:", error);
+            alert("Failed to accept ride. Please try again.");
+        });
+}
+

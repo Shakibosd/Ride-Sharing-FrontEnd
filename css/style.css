@@ -1,10 +1,9 @@
 body {
-    background-color: whitesmoke !important;
-    background-image: url(..//images/bag.png) !important;
+    background-image: url('..//images/bag.png');
 }
 
 .hovers {
-    box-shadow: 4px 4px 8px gray !important;
+    box-shadow: 4px 4px 8px gray;
 }
 
 #navbar-fixed-top {
@@ -47,7 +46,7 @@ body {
     justify-content: space-around;
     align-items: center;
     color: darkl;
-    background: linear-gradient(60deg, darkcyan, darkslategray);
+    background: linear-gradient(60deg, rgb(227, 225, 225), rgb(123, 122, 122));
     box-shadow: 4px 4px 8px gray;
     border-radius: 20px;
 }

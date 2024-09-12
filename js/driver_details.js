@@ -336,7 +336,6 @@ function deleteReview(reviewId) {
         });
     }
 }
-
 //rider request
 document.addEventListener("DOMContentLoaded", fetchRides);//fetch reide function all load
 function fetchRides() {
@@ -370,16 +369,17 @@ function fetchRides() {
                 rideRequests.appendChild(row);
             });
         })
-        .catch((error) => console.error("Error fetching rides:", error));
+    
 }
 function acceptRide(rideId) {
     console.log(`Ride with ID ${rideId} accepted.`);
     const button = document.getElementById(`accept-btn-${rideId}`);
-    button.textContent = 'Accepted';  
-    button.disabled = true; 
+    button.textContent = 'Accepted';
+    button.disabled = true;
 
     // Save the ride ID to localStorage
     localStorage.setItem(`ride-${rideId}-accepted`, 'true');
+
 
     const token = localStorage.getItem("authToken");
     fetch(`http://127.0.0.1:8000/rides/accept/${rideId}/`, {

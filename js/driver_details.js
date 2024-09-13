@@ -338,7 +338,7 @@ function deleteReview(reviewId) {
     }
 }
 //rider request
-document.addEventListener("DOMContentLoaded", fetchRides); //fetch ride function on load
+document.addEventListener("DOMContentLoaded", fetchRides); 
 
 function fetchRides() {
     const token = localStorage.getItem("authToken");
@@ -354,30 +354,34 @@ function fetchRides() {
             const rideRequests = document.getElementById("ride-requests");
             rideRequests.innerHTML = "";
             data.forEach((ride) => {
-                const row = document.createElement("tr");
                 const isAccepted = localStorage.getItem(`ride-${ride.id}-accepted`);
 
-                row.innerHTML = `
-                    <td>${ride.driver ? ride.driver : "Driver Not Accept Your Request"}</td>
-                    <td>${ride.where_ride_from}</td>
-                    <td>${ride.where_ride_to}</td>
-                    <td id="status-${ride.id}">${ride.status || "Pending"}</td> 
-                    <td>
-                        <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}" 
-                        onclick="checkAdminAndAccept(${ride.id})" 
-                        ${isAccepted ? "disabled" : ""}>
-                            ${isAccepted ? "Accepted" : "Accept"}
-                        </button>
-                    </td>
-                `;
-                rideRequests.appendChild(row);
+                if (!isAccepted) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${ride.driver ? ride.driver : "Driver Not Accept Your Request"}</td>
+                        <td>${ride.where_ride_from}</td>
+                        <td>${ride.where_ride_to}</td>
+                        <td id="status-${ride.id}">${ride.status || "Pending"}</td> 
+                        <td>
+                            <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}" 
+                            onclick="checkAdminAndAccept(${ride.id})" 
+                            ${isAccepted ? "disabled" : ""}>
+                                ${isAccepted ? "Accepted" : "Accept"}
+                            </button>
+                        </td>
+                    `;
+                    row.setAttribute('id', `ride-row-${ride.id}`);
+                    rideRequests.appendChild(row);
+                }
             });
         });
 }
 
+
 function checkAdminAndAccept(rideId) {
     const token = localStorage.getItem("authToken");
-    
+
     // Check if user is an admin
     fetch("http://127.0.0.1:8000/rides/is_admin/", {
         method: "GET",
@@ -405,8 +409,6 @@ function acceptRide(rideId) {
     const button = document.getElementById(`accept-btn-${rideId}`);
     button.textContent = "Accepted";
     button.disabled = true;
-
-    // Save the ride ID to localStorage
     localStorage.setItem(`ride-${rideId}-accepted`, "true");
 
     const token = localStorage.getItem("authToken");
@@ -428,13 +430,20 @@ function acceptRide(rideId) {
         .then((data) => {
             console.log(data);
             alert("Ride request accepted successfully!");
-            
-            // Update the status to "Completed"
-            const statusCell = document.getElementById(`status-${rideId}`);
-            statusCell.textContent = "Completed";
+            const row = document.getElementById(`ride-row-${rideId}`);
+            row.remove();
+            redirectToPage(rideId, data);
         })
         .catch((error) => {
             console.error("Error accepting ride:", error);
             alert("Failed to accept ride. Please try again.");
         });
 }
+
+// Function to redirect to another page with ride data
+function redirectToPage(rideId, rideData) {
+    sessionStorage.setItem("acceptedRideData", JSON.stringify(rideData));
+    window.location.href = `./summary.html?rideId=${rideId}`;
+}
+
+

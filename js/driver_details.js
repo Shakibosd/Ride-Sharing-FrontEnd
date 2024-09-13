@@ -123,6 +123,7 @@ if (driverId) {
     fetchDriverDetails(driverId);
 }
 
+
 //review rating
 function submitReview(e) {
     e.preventDefault();
@@ -369,7 +370,7 @@ function fetchRides() {
                 rideRequests.appendChild(row);
             });
         })
-    
+
 }
 function acceptRide(rideId) {
     console.log(`Ride with ID ${rideId} accepted.`);

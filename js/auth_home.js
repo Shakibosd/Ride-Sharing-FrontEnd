@@ -36,7 +36,7 @@ function fetchDrivers() {
         listItem.style.borderRadius = "10px";
         listItem.innerHTML = `
                 <h5>
-                    <a style="text-decoration:none;" class="text-dark" onclick="fetchDriverDetails(${driver.id})">${driver.name}</a>
+                    <a style="text-decoration:none;" class="text-dark" onclick="fetchDriverDetails(${driver.id})">${driver.user}</a>
                 </h5>
             `;
         driverList.appendChild(listItem);
@@ -174,6 +174,7 @@ function addRide() {
     .then((data) => {
       console.log(data);
       alert("Ride Request Submitted!");
+      alert("Please Check Driver Details");
       window.location.reload();
     })
     .catch((error) => {

@@ -9,7 +9,7 @@ fetch("navbar.html")
         const token = localStorage.getItem("authToken");
 
         console.log(token);
-
+        
         if (token) {
             navElement.innerHTML += `
             <a class="btn btn-info btn-sm" href="./auth_home.html">Home</a>

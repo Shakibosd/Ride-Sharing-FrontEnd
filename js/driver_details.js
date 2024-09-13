@@ -23,7 +23,8 @@ function fetchDriverDetails(driverId) {
             driverDetailsContent.innerHTML = `
                 <h4>Phone : ${driver.phone_number}</h4>
                 <h4>Email : ${driver.email}</h4>
-                <h4>Driving Licence : <span class="btn btn-secondary">${driver.driving_licence}</span></h4>
+                <h4>Driving Licence : <span class="btn btn-secondary">${driver.driving_licence
+                }</span></h4>
                 <h4>Number Plate : ${driver.number_plate}</h4>
                 <h4>Par Hours : ${driver.par_hours} ৳</h4>
                 <h4>Availability : <span class="btn btn-secondary">${driver.is_available ? "Driver Available!" : "Not Available"
@@ -122,7 +123,6 @@ function fetchDriverDetails(driverId) {
 if (driverId) {
     fetchDriverDetails(driverId);
 }
-
 
 //review rating
 function submitReview(e) {
@@ -338,7 +338,8 @@ function deleteReview(reviewId) {
     }
 }
 //rider request
-document.addEventListener("DOMContentLoaded", fetchRides);//fetch reide function all load
+document.addEventListener("DOMContentLoaded", fetchRides); //fetch ride function on load
+
 function fetchRides() {
     const token = localStorage.getItem("authToken");
     fetch("http://127.0.0.1:8000/rides/rides/", {
@@ -360,30 +361,56 @@ function fetchRides() {
                     <td>${ride.driver ? ride.driver : "Driver Not Accept Your Request"}</td>
                     <td>${ride.where_ride_from}</td>
                     <td>${ride.where_ride_to}</td>
-                    <td>${ride.status || "Pending"}</td> 
+                    <td id="status-${ride.id}">${ride.status || "Pending"}</td> 
                     <td>
-                        <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}" onclick="acceptRide(${ride.id})" ${isAccepted ? 'disabled' : ''}>
-                            ${isAccepted ? 'Accepted' : 'Accept'}
+                        <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}" 
+                        onclick="checkAdminAndAccept(${ride.id})" 
+                        ${isAccepted ? "disabled" : ""}>
+                            ${isAccepted ? "Accepted" : "Accept"}
                         </button>
                     </td>
                 `;
                 rideRequests.appendChild(row);
             });
-        })
-
+        });
 }
+
+function checkAdminAndAccept(rideId) {
+    const token = localStorage.getItem("authToken");
+    
+    // Check if user is an admin
+    fetch("http://127.0.0.1:8000/rides/is_admin/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.is_admin) {
+                acceptRide(rideId);
+            } else {
+                alert("You are not authorized to accept this ride.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error verifying admin status:", error);
+            alert("Error verifying admin status.");
+        });
+}
+
 function acceptRide(rideId) {
     console.log(`Ride with ID ${rideId} accepted.`);
     const button = document.getElementById(`accept-btn-${rideId}`);
-    button.textContent = 'Accepted';
+    button.textContent = "Accepted";
     button.disabled = true;
 
     // Save the ride ID to localStorage
-    localStorage.setItem(`ride-${rideId}-accepted`, 'true');
-
+    localStorage.setItem(`ride-${rideId}-accepted`, "true");
 
     const token = localStorage.getItem("authToken");
-    fetch(`http://127.0.0.1:8000/rides/accept/${rideId}/`, {
+    fetch(`http://127.0.0.1:8000/drivers/accept/${rideId}/`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -401,10 +428,13 @@ function acceptRide(rideId) {
         .then((data) => {
             console.log(data);
             alert("Ride request accepted successfully!");
+            
+            // Update the status to "Completed"
+            const statusCell = document.getElementById(`status-${rideId}`);
+            statusCell.textContent = "Completed";
         })
         .catch((error) => {
             console.error("Error accepting ride:", error);
             alert("Failed to accept ride. Please try again.");
         });
 }
-

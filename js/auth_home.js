@@ -17,7 +17,7 @@ function fetchDrivers() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
+      Authorization: `token ${token}`,
     },
   })
     .then((response) => {

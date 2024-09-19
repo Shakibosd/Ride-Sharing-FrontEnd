@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${rideData.driver || "Not Assigned"}</td>
             <td>${rideData.where_ride_from}</td>
             <td>${rideData.where_ride_to}</td>
-            <td>${rideData.status}</td>
+            <td style="color: #00ffd5;">${rideData.status}</td>
           </tr>
         `;
       summaryTableBody.innerHTML += row;

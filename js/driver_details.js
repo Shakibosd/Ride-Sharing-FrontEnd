@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const driverId = urlParams.get("id");
 
-function fetchDriverDetails(driverId) {
+function fetchDriverDetails(driverId, rideStatus) {
   const token = localStorage.getItem("authToken");
   fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
     method: "GET",
@@ -20,19 +20,20 @@ function fetchDriverDetails(driverId) {
       const driverDetailsContent = document.getElementById(
         "driver-details-content"
       );
+      
       driverDetailsContent.innerHTML = `
-                <h4>Phone : ${driver.phone_number}</h4>
-                <h4>Email : ${driver.email}</h4>
-                <h4>Driving Licence : <span class="btn btn-secondary">${
-                  driver.driving_licence
-                }</span></h4>
-                <h4>Number Plate : ${driver.number_plate}</h4>
-                <h4>Par Hours : ${driver.par_hours} ৳</h4>
-                <h4>Availability : <span class="btn btn-secondary">${
-                  driver.is_available ? "Driver Available!" : "Not Available"
-                }</span></h4>
-                <br>
-                <div class="d-flex gap-4">
+          <h4>Phone : ${driver.phone_number}</h4>
+          <h4>Email : ${driver.email}</h4>
+          <h4>Driving Licence : <span class="btn btn-secondary">${
+            driver.driving_licence
+          }</span></h4>
+          <h4>Number Plate : ${driver.number_plate}</h4>
+          <h4>Per Hour : ${driver.par_hours} ৳</h4>
+          <h4>Availability : <span class="btn btn-secondary">${
+            driver.is_available ? "Driver Available!" : "Not Available"
+          }</span></h4>
+          <br>
+                          <div class="d-flex gap-4">
                      <div>
                         <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" >Bill Pay</a>
                     </div>
@@ -123,9 +124,9 @@ function fetchDriverDetails(driverId) {
     .catch((error) => console.error("Error fetching driver details:", error));
 }
 
-if (driverId) {
-  fetchDriverDetails(driverId);
-}
+
+fetchDriverDetails(driverId);
+
 
 //review rating
 function submitReview(e) {
@@ -448,7 +449,7 @@ function acceptRide(rideId) {
 // Function to update accepted rides and store in sessionStorage
 function updateAcceptedRides(rideId, rideData) {
   let acceptedRides = JSON.parse(sessionStorage.getItem("acceptedRides")) || [];
-  acceptedRides.push(rideData); 
+  acceptedRides.push(rideData);
   sessionStorage.setItem("acceptedRides", JSON.stringify(acceptedRides));
   window.location.href = "./summary.html";
 }

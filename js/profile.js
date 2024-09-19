@@ -54,51 +54,10 @@ updatePaymentCards();
 function submitPayment(driverId) {
   const amount = document.getElementById("amount").value;
 
-  const user_id = localStorage.getItem("user_id");
-  const token = localStorage.getItem("authToken");
-
-  // debugging
-  console.log({
-    user: user_id,
-    amount: amount,
-    driver: driverId,
-  });
-
-  // Send payment data
-  fetch("http://127.0.0.1:8000/payments/payments/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-    body: JSON.stringify({
-      user: parseInt(user_id),
-      amount: parseFloat(amount),
-      driver: driverId,
-    }),
-  })
-    .then(async (response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        const err = await response.json();
-        console.error("Server response error:", err);
-        throw new Error("Failed to submit payment");
-      }
-    })
-    .then((data) => {
-      console.log("Payment submitted:", data);
-      alert("payment successfull!");
-      window.location.href = "./profile.html";
-      updatePaymentCards();
-    })
-    .catch((error) => {
-      console.error("Error submitting payment:", error);
-      alert("Failed to submit payment. Please try again.");
-    });
-}
-function submitPayment(driverId) {
-  const amount = document.getElementById("amount").value;
+  if (amount === "") {
+    alert("Please enter a valid amount.");
+    return;
+  }
 
   const user_id = localStorage.getItem("user_id");
   const token = localStorage.getItem("authToken");

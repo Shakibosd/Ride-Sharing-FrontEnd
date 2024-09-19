@@ -120,9 +120,10 @@ function displayRides(rides) {
     const rideCard = document.createElement("div");
     rideCard.classList.add("card", "mb-3", "bg-light", "text-dark", "hovers");
     rideCard.style.borderRadius = "10px";
-    const driverInfo = ride.status === "Ride Completed" && ride.driver 
-    ? `Driver Username : ${ride.driver || ride.driver}` 
-    : "Driver Not Accept Your Request";
+    const driverInfo =
+      ride.status === "Ride Completed" && ride.driver
+        ? `Driver Username : ${ride.driver || ride.driver}`
+        : "Driver Not Accept Your Request";
     rideCard.innerHTML = `
         <div class="card-body">
             <p class="card-text">Where Ride From : ${ride.where_ride_from}</p>
@@ -182,5 +183,3 @@ function addRide() {
       alert("Failed to add ride. Please check your input and try again.");
     });
 }
-
-  

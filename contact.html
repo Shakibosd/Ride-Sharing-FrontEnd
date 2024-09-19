@@ -89,7 +89,7 @@
             const message = document.getElementById('message').value;
 
             try {
-                const response = await fetch('http://127.0.0.1:8000/rides/contact/', { 
+                const response = await fetch('http://127.0.0.1:8000/rides/contact/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -99,7 +99,7 @@
 
                 if (response.ok) {
                     alert('Your message has been sent successfully.');
-                    document.querySelector('form').reset(); 
+                    document.querySelector('form').reset();
                 } else {
                     const errorData = await response.json();
                     alert('Failed to send your message: ' + JSON.stringify(errorData));

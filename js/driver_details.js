@@ -130,7 +130,7 @@ fetchDriverDetails(driverId);
 
 //review rating
 function submitReview(e) {
-  e.preventDefault();
+  // e.preventDefault();
   const rating = document.getElementById("rating").value;
   const comment = document.getElementById("comment").value;
 

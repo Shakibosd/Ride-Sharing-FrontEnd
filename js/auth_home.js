@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function fetchDrivers() {
   const token = localStorage.getItem("authToken");
 
-  fetch("http://127.0.0.1:8000/drivers/drivers/", {
+  fetch("https://ride-sharing-django-project.onrender.com/drivers/drivers/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function fetchDrivers() {
 // Fetch specific driver details
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
-  fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
+  fetch(`https://ride-sharing-django-project.onrender.com/drivers/drivers/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -97,7 +97,7 @@ function fetchDriverDetails(driverId) {
 
 // Fetch rides
 function fetchRides() {
-  fetch("http://127.0.0.1:8000/rides/rides/")
+  fetch("https://ride-sharing-django-project.onrender.com/rides/rides/")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch rides.");
@@ -153,7 +153,7 @@ function addRide() {
   const where_ride_to = document.getElementById("where_ride_to").value;
 
   const token = localStorage.getItem("authToken");
-  fetch("http://127.0.0.1:8000/rides/rides/", {
+  fetch("https://ride-sharing-django-project.onrender.com/rides/rides/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -16,7 +16,7 @@ const handleRegister = (event) => {
   };
   console.log("Register Data", registerData);
 
-  fetch("http://127.0.0.1:8000/users/register/", {
+  fetch("https://ride-sharing-django-project.onrender.com/users/register/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const handleLogin = (event) => {
     username: formData.get("username"),
     password: formData.get("password"),
   };
-  fetch("http://127.0.0.1:8000/users/login/", {
+  fetch("https://ride-sharing-django-project.onrender.com/users/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const handleLogout = () => {
     const token = localStorage.getItem("authToken");
     const user_id = localStorage.getItem("user_id");
 
-    fetch("http://127.0.0.1:8000/users/logout/", {
+    fetch("https://ride-sharing-django-project.onrender.com/users/logout/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

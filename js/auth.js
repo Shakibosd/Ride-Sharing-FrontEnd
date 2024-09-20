@@ -57,6 +57,7 @@ const handleLogin = (event) => {
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user_id", data.user_id);
       window.location.href = "./profile.html";
+      alert("Logding Successfully.");
     })
     .catch((err) => {
       console.log("Login error", err.message);

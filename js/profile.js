@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         alert("Profile updated successfully");
       })
       .catch((error) => console.error("Error updating profile:", error));

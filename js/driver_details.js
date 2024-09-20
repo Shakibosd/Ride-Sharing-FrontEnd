@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const driverId = urlParams.get("id");
 
-function fetchDriverDetails(driverId, rideStatus) {
+function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
   fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
     method: "GET",
@@ -20,7 +20,7 @@ function fetchDriverDetails(driverId, rideStatus) {
       const driverDetailsContent = document.getElementById(
         "driver-details-content"
       );
-      
+
       driverDetailsContent.innerHTML = `
           <h4>Phone : ${driver.phone_number}</h4>
           <h4>Email : ${driver.email}</h4>
@@ -29,20 +29,22 @@ function fetchDriverDetails(driverId, rideStatus) {
           }</span></h4>
           <h4>Number Plate : ${driver.number_plate}</h4>
           <h4>Per Hour : ${driver.par_hours} ৳</h4>
+          <h4>Where To Stay : ${driver.where_ride_from} ৳</h4>
+          <h4>Go Somewhere : ${driver.where_ride_to} ৳</h4>
           <h4>Availability : <span class="btn btn-secondary">${
             driver.is_available ? "Driver Available!" : "Not Available"
           }</span></h4>
           <br>
-                          <div class="d-flex gap-4">
-                     <div>
-                        <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" >Bill Pay</a>
-                    </div>
-                    <div>
-                        <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
-                    </div>
-                </div>
-                <!-- Modal 1 -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="d-flex gap-4">
+             <div>
+                  <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Bill Pay</a>
+              </div>
+              <div>
+                  <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
+              </div>
+          </div>
+          <!-- Modal 1 -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -85,7 +87,7 @@ function fetchDriverDetails(driverId, rideStatus) {
                             <label for="comment">Comment</label>
                             <textarea class="form-control" id="comment" placeholder="Please Enter Your Comment Here"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="submitReview(event)">Submit</button>
+                        <button type="submit" class="btn btn-primary" onclick="submitReview()">Submit</button>
                     </div>
                 </div>
             </div>
@@ -124,9 +126,7 @@ function fetchDriverDetails(driverId, rideStatus) {
     .catch((error) => console.error("Error fetching driver details:", error));
 }
 
-
 fetchDriverDetails(driverId);
-
 
 //review rating
 function submitReview(e) {

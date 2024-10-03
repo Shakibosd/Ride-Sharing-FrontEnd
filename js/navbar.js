@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <a class="btn btn-success btn-sm" href="./profile.html">Profile</a>
                     <a class="btn btn-secondary btn-sm" href="./pass_change.html">Password Change</a>
                     <a class="btn btn-warning btn-sm" href="./summary.html">Driver Accept</a>
+                    <a class="btn btn-primary btn-sm" href="./admin_deshboard.html">Admin Deshboard</a>
                     <a class="btn btn-danger btn-sm" onclick="handleLogout()">Logout</a>
               `;
             } else {

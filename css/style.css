@@ -66,7 +66,6 @@ td {
 }
 
 #message {
-    /* background-color: black; */
     color: white;
     border: none;
 }
@@ -90,6 +89,48 @@ td {
 }
 
 #edit-comment {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#newPassword {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#oldPassword {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#number {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#number_plate {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#driving_licence {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#phone_number {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#is_available {
     background-color: black;
     color: white;
     border: none;

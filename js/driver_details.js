@@ -3,7 +3,7 @@ const driverId = urlParams.get("id");
 
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
-  fetch(`https://ride-sharing-django-project.onrender.com/drivers/drivers/${driverId}/`, {
+  fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -65,47 +65,18 @@ function fetchDriverDetails(driverId) {
                 </div>
             </div>
             <!-- Modal 2 -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-dark">
-                            <div class="mb-3">
-                            <label for="rating">Rate This</label>
-                            <select id="rating" name="rating" class="form-control" required>
-                                <option value="" selected>Select a rating</option>
-                                <option value="1">⭐</option>
-                                <option value="2">⭐⭐</option>
-                                <option value="3">⭐⭐⭐</option>
-                                <option value="4">⭐⭐⭐⭐</option>
-                                <option value="5">⭐⭐⭐⭐⭐</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="comment">Comment</label>
-                            <textarea class="form-control" id="comment" placeholder="Please Enter Your Comment Here"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" onclick="submitReview()">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
           <!--edit and delete review-->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content bg-dark">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editModalLabel">Edit Review</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-dark">
+                    <div class="modal-body">
                         <div class="mb-3">
-                            <label for="edit-rating">Rate This</label>
-                            <select id="edit-rating" name="rating" class="form-control" required>
-                                <option value="" selected>Select a rating</option>
+                            <label>Rate This</label>
+                            <select id="edit-rating" class="form-select" required>
                                 <option value="1">⭐</option>
                                 <option value="2">⭐⭐</option>
                                 <option value="3">⭐⭐⭐</option>
@@ -115,7 +86,7 @@ function fetchDriverDetails(driverId) {
                         </div>
                         <div class="mb-3">
                             <label for="edit-comment">Comment</label>
-                            <textarea class="form-control" id="edit-comment" placeholder="Please Enter Your Comment Here"></textarea>
+                            <textarea class="form-control" id="edit-comment" placeholder="Please Enter Your Comment Here" required ></textarea>
                         </div>
                         <input type="hidden" id="edit-review-id">
                         <button type="button" class="btn btn-primary" onclick="updateReviewDetails()">Update</button>
@@ -159,7 +130,7 @@ function submitReview(e) {
     alert("Invalid rating value.");
     return;
   }
-  fetch(`https://ride-sharing-django-project.onrender.com/reviews/review_list_create/${driverId}/`, {
+  fetch(`http://127.0.0.1:8000/reviews/review_list_create/${driverId}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -192,7 +163,7 @@ function submitReview(e) {
 function updateReviewCards() {
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://ride-sharing-django-project.onrender.com/reviews/reviews_detail_get/${driverId}/`, {
+  fetch(`http://127.0.0.1:8000/reviews/reviews_detail_get/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -213,10 +184,10 @@ function updateReviewCards() {
       document.getElementById("reviewCounts").innerHTML = data.length;
       data.forEach((review) => {
         const card = document.createElement("div");
-        card.classList.add("card", "mb-3", "bg-light", "text-dark", "hovers");
+        card.classList.add("card", "mb-3", "bg-dark", "hovers");
         card.style.borderRadius = "10px";
         card.innerHTML = `
-                    <div class="card w-100 p-3">
+                    <div class="w-100 p-3 bg-dark">
                         <h5 class="card-title">Rating : ${review.rating}</h5>
                         <p class="card-text">Comment : ${review.comment}</p>
                         <p class="card-text"><small class="text-muted">Date : ${review.created_at}</small></p>
@@ -242,7 +213,7 @@ updateReviewCards();
 function prepareEditModal(reviewId) {
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://ride-sharing-django-project.onrender.com/reviews/reviews_detail/${reviewId}/`, {
+  fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -279,7 +250,7 @@ function updateReviewDetails() {
     return;
   }
 
-  fetch(`https://ride-sharing-django-project.onrender.com/reviews/reviews_detail/${reviewId}/`, {
+  fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -293,6 +264,7 @@ function updateReviewDetails() {
     if (response.ok) {
       alert("Review updated successfully!");
       updateReviewCards();
+      location.reload();
       return response.json();
     }
   });
@@ -301,7 +273,7 @@ function updateReviewDetails() {
 function editReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://ride-sharing-django-project.onrender.com/reviews/reviews_detail/${reviewId}/`, {
+  fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -326,7 +298,7 @@ function deleteReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
   if (confirm("Are you sure you want to delete this review?")) {
-    fetch(`https://ride-sharing-django-project.onrender.com/reviews/reviews_detail/${reviewId}/`, {
+    fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -347,7 +319,7 @@ document.addEventListener("DOMContentLoaded", fetchRides);
 
 function fetchRides() {
   const token = localStorage.getItem("authToken");
-  fetch("https://ride-sharing-django-project.onrender.com/rides/rides/", {
+  fetch("http://127.0.0.1:8000/rides/rides/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -390,7 +362,7 @@ function checkAdminAndAccept(rideId) {
   const token = localStorage.getItem("authToken");
 
   // Check if user is an admin
-  fetch("https://ride-sharing-django-project.onrender.com/rides/is_admin/", {
+  fetch("http://127.0.0.1:8000/rides/is_admin/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -419,7 +391,7 @@ function acceptRide(rideId) {
   localStorage.setItem(`ride-${rideId}-accepted`, "true");
 
   const token = localStorage.getItem("authToken");
-  fetch(`https://ride-sharing-django-project.onrender.com/drivers/accept/${rideId}/`, {
+  fetch(`http://127.0.0.1:8000/drivers/accept/${rideId}/`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

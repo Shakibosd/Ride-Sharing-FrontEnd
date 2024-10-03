@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const token = localStorage.getItem("authToken");
       if (token) {
-        fetch("https://ride-sharing-django-project.onrender.com/rides/is_admin/", {
+        fetch("http://127.0.0.1:8000/rides/is_admin/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

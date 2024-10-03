@@ -1,10 +1,98 @@
 body {
-    background-image: url('..//images/bag.png') !important;
-    background: whitesmoke;
+    background-color: #333 !important;
 }
 
 .hovers {
     box-shadow: 4px 4px 8px gray;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+label,
+b,
+div,
+th,
+td {
+    color: white;
+}
+
+#username {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#email {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#first_name {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#last_name {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#password {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#confirm_password {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#name {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#message {
+    /* background-color: black; */
+    color: white;
+    border: none;
+}
+
+#where_ride_to {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#where_ride_from {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#edit-rating {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#edit-comment {
+    background-color: black;
+    color: white;
+    border: none;
 }
 
 #navbar-fixed-top {
@@ -47,7 +135,7 @@ body {
     justify-content: space-around;
     align-items: center;
     color: darkl;
-    background: linear-gradient(60deg, rgb(227, 225, 225), rgb(123, 122, 122));
+    background: linear-gradient(60deg, gray, darkslategray);
     box-shadow: 4px 4px 8px gray;
     border-radius: 20px;
 }

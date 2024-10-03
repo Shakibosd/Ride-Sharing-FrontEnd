@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function fetchDrivers() {
   const token = localStorage.getItem("authToken");
 
-  fetch("https://ride-sharing-django-project.onrender.com/drivers/drivers/", {
+  fetch("http://127.0.0.1:8000/drivers/drivers/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -31,12 +31,12 @@ function fetchDrivers() {
       driverList.innerHTML = "";
       data.forEach((driver, index) => {
         const listItem = document.createElement("li");
-        listItem.className = "bg-light m-1 p-3 hovers";
+        listItem.className = "bg-dark m-1 p-3 hovers";
         listItem.style.listStyle = "none";
         listItem.style.borderRadius = "10px";
         listItem.innerHTML = `
                 <h5>
-                    <a style="text-decoration:none;" class="text-dark" onclick="fetchDriverDetails(${driver.id})">${driver.user}</a>
+                    <a style="text-decoration:none;" class="text-white" onclick="fetchDriverDetails(${driver.id})">${driver.user}</a>
                 </h5>
             `;
         driverList.appendChild(listItem);
@@ -53,7 +53,7 @@ function fetchDrivers() {
 // Fetch specific driver details
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
-  fetch(`https://ride-sharing-django-project.onrender.com/drivers/drivers/${driverId}/`, {
+  fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -97,7 +97,7 @@ function fetchDriverDetails(driverId) {
 
 // Fetch rides
 function fetchRides() {
-  fetch("https://ride-sharing-django-project.onrender.com/rides/rides/")
+  fetch("http://127.0.0.1:8000/rides/rides/")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch rides.");
@@ -118,7 +118,7 @@ function displayRides(rides) {
   ridesContainer.innerHTML = "";
   rides.forEach((ride) => {
     const rideCard = document.createElement("div");
-    rideCard.classList.add("card", "mb-3", "bg-light", "text-dark", "hovers");
+    rideCard.classList.add("card", "mb-3", "bg-dark", "hovers");
     rideCard.style.borderRadius = "10px";
 
     const driverInfo =
@@ -153,7 +153,7 @@ function addRide() {
   const where_ride_to = document.getElementById("where_ride_to").value;
 
   const token = localStorage.getItem("authToken");
-  fetch("https://ride-sharing-django-project.onrender.com/rides/rides/", {
+  fetch("http://127.0.0.1:8000/rides/rides/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

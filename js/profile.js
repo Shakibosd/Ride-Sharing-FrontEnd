@@ -1,7 +1,7 @@
 //user profile and profile update
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
-  const apiUrl = `https://ride-sharing-django-project.onrender.com/profiles/user_detail/${user_id}/`;
+  const apiUrl = `http://127.0.0.1:8000/profiles/user_detail/${user_id}/`;
   const token = localStorage.getItem("token");
 
   fetch(apiUrl, {
@@ -71,7 +71,7 @@ function submitPayment(driverId) {
   });
 
   // Send payment data
-  fetch("https://ride-sharing-django-project.onrender.com/payments/payments/", {
+  fetch("http://127.0.0.1:8000/payments/payments/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -108,7 +108,7 @@ function submitPayment(driverId) {
 function updatePaymentCards() {
   const token = localStorage.getItem("authToken");
 
-  fetch("https://ride-sharing-django-project.onrender.com/payments/payments_get/", {
+  fetch("http://127.0.0.1:8000/payments/payments_get/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const rideDataArray = JSON.parse(localStorage.getItem("acceptedRides"));
+  const rideDataArray = JSON.parse(localStorage.getItem("acceptedRides")); // Correct retrieval
   const summaryTableBody = document.getElementById("ride-summary");
 
   if (rideDataArray && rideDataArray.length > 0) {

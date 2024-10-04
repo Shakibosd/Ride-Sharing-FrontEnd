@@ -97,7 +97,13 @@ function fetchDriverDetails(driverId) {
 
 // Fetch rides
 function fetchRides() {
-  fetch("http://127.0.0.1:8000/rides/rides/")
+  const token = localStorage.getItem("authToken");
+  fetch("http://127.0.0.1:8000/rides/rides/", {
+    method: "GET",
+    headers: {
+      Authorization: `token ${token}`,
+    },
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch rides.");

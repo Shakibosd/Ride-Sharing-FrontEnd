@@ -373,7 +373,7 @@ function fetchRides() {
             <td>
                 <button class="btn btn-success btn-sm" id="accept-btn-${
                   ride.id
-                }" onclick="checkAdminAndAccept(${ride.id})" 
+                }"onclick="checkAdminAndAccept(${ride.id})" 
                 ${isAccepted ? "disabled" : ""}>
                     ${isAccepted ? "Accepted" : "Accept"}
                 </button>
@@ -449,8 +449,8 @@ function acceptRide(rideId) {
 
 // Function to update accepted rides and store in sessionStorage
 function updateAcceptedRides(rideId, rideData) {
-  let acceptedRides = JSON.parse(sessionStorage.getItem("acceptedRides")) || [];
+  let acceptedRides = JSON.parse(localStorage.getItem("acceptedRides")) || [];
   acceptedRides.push(rideData);
-  sessionStorage.setItem("acceptedRides", JSON.stringify(acceptedRides));
-  window.location.href = "./summary.html";
+  localStorage.setItem("acceptedRides", JSON.stringify(acceptedRides)); // Ensure you're using localStorage
+  window.location.href = "./summary.html"; // Redirect to summary page
 }

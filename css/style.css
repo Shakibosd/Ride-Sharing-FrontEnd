@@ -131,13 +131,19 @@ td {
     border: none;
 }
 
+#par_hours {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
 #driving_licence {
     background-color: black;
     color: white;
     border: none;
 }
 
-#phone_number {
+#phone {
     background-color: black;
     color: white;
     border: none;

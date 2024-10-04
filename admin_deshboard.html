@@ -26,64 +26,74 @@
     </section>
 
     <main>
-        <section>
-            <div class="driver_added" style="padding-top: 140px;">
-                <h3 class="text-center">New Driver Add</h3>
-                <br>
-                <form class="w-75 container card p-4 bg-dark gap-2" style="border-radius: 20px;">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control"
-                        placeholder="Please Type Driver Name" required>
+        <section style="padding-top: 150px;">
+            <h3 class="text-center">New Driver Add</h3>
+            <br>
+            <form id="driverForm" method="post" enctype="multipart/form-data" class="card p-5 bg-dark w-75 mx-auto"
+                style="border-radius: 20px;">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter driver name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter driver email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter driver phone Number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="driving_licence" class="form-label">Driving Licence</label>
+                    <select class="form-control" id="driving_licence" required>
+                        <option value="">Select Driving Licence</option>
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="number_plate" class="form-label">Number Plate</label>
+                    <input type="text" class="form-control" id="number_plate" placeholder="Enter vehicle number plate"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="par_hours" class="form-label">Par Hours</label>
+                    <input type="number" class="form-control" id="par_hours" placeholder="Enter Par Hours Exp 2 Decimel Fiend Added" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="where_ride_from" class="form-label">Where Ride From</label>
+                    <input type="text" class="form-control" id="where_ride_from"
+                        placeholder="Enter location where ride starts" required>
+                </div>
+                <div class="mb-3">
+                    <label for="where_ride_to" class="form-label">Where Ride To</label>
+                    <input type="text" class="form-control" id="where_ride_to"
+                        placeholder="Enter location where ride ends" required>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="is_available">
+                    <label class="form-check-label" for="is_available">Is Available</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Driver</button>
+            </form>
 
-                    <label for="number">Per/Hour</label>
-                    <input type="number" name="number" id="number" class="form-control"
-                        placeholder="Please Add Driver Par/Hour" required>
-
-                    <label for="number_plate">Number Plate</label>
-                    <input type="text" name="number_plate" id="number_plate" class="form-control"
-                        placeholder="Please Type Driver Number Plate" required>
-
-                    <label for="driving_licence">Driving Licence</label>
-                    <input type="text" name="driving_licence" id="driving_licence" class="form-control"
-                        placeholder="Please Type Driver Driving Licence" required>
-
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control"
-                        placeholder="Please Type Driver Email" required>
-
-                    <label for="phone_number">Phone Number</label>
-                    <input type="number" name="phone_number" id="phone_number" class="form-control"
-                        placeholder="Please Add Driver Phone Number" required>
-
-                    <label for="where_ride_from">Where Ride From</label>
-                    <input type="text" name="where_ride_from" id="where_ride_from" class="form-control"
-                        placeholder="Please Type Driver Where Ride From" required>
-
-                    <label for="where_ride_to">Where Ride To</label>
-                    <input type="text" name="where_ride_to" id="where_ride_to" class="form-control"
-                        placeholder="Please Type Driver Where Ride To" required>
-
-                    <label for="is_availabl" class="text-center">Is Available</label>
-                    <input type="checkbox" name="is_available" id="is_available" required>
-
-                    <a onclick="alert('অপেক্ষা করুণ শিগ্রই এডমিন ডেসবোর্ড এর কাজ সম্পন্ন করে ফেলবো')"
-                        class="btn btn-info" type="submit">Added</a>
-                </form>
+            <div id="successMessage" class="alert alert-success mt-3" style="display: none;">
+                Driver added successfully!
             </div>
         </section>
         <section>
             <div>
-                <h3 class="pt-5 text-center">Drivers List</h3>
+                <h3 class="pt-3 text-center">Drivers List</h3>
                 <div id="drivers-list" class="pt-4">
-                   
+
                 </div>
             </div>
         </section>
         <section>
             <div>
-                <h3 class="pt-5 text-center">User List</h3>
-                <div id="user-list" class="row pt-4">
-                   
+                <h3 class="pt-3 text-center">User List</h3>
+                <div id="user-list" class="row pt-43">
+
                 </div>
             </div>
         </section>

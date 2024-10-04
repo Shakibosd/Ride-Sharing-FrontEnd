@@ -30,9 +30,8 @@ function displayDrivers(drivers) {
                         <h5>Where From Ride -> ${driver.where_ride_from}</h5>
                         <h5>Par/Hours${driver.par_hours}</h5>
                         <h5>Where To Ride${driver.where_ride_to}</h5>
-                        <h5>Available -> ${
-                          driver.is_available ? "Available" : "Not Available"
-                        }</h5>
+                        <h5>Available -> ${driver.is_available ? "Available" : "Not Available"
+      }</h5>
                         <div class="d-flex gap-5">
                             <div>
                                 <a class="btn btn-success">Edit</a>
@@ -66,7 +65,7 @@ function fetchUsers() {
 
       data.forEach((user) => {
         let userCard = `
-                    <div class="card bg-dark w-75 mx-auto p-5" style="border-radius:20px;">
+                    <div class="card bg-dark w-75 mx-auto m-3 p-5" style="border-radius:20px;">
                             <h3 class="card-title">ID: ${user.id}</h3>
                             <h3 class="card-title">Username: ${user.username}</h3>
                             <p>First Name: ${user.first_name}</p>
@@ -80,5 +79,59 @@ function fetchUsers() {
     .catch((error) => console.error("Error fetching users:", error));
 }
 
-// Call the fetchUsers function on page load
 fetchUsers();
+
+
+document.getElementById("driverForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone_number = document.getElementById("phone").value;
+  const driving_licence = document.getElementById("driving_licence").value;
+  const number_plate = document.getElementById("number_plate").value;
+  const par_hours = document.getElementById("par_hours").value;
+  const where_ride_from = document.getElementById("where_ride_from").value;
+  const where_ride_to = document.getElementById("where_ride_to").value;
+  const is_available = document.getElementById("is_available").checked;
+
+  const driverData = {
+    name: name,
+    email: email,
+    phone_number: phone_number,
+    driving_licence: driving_licence,
+    number_plate: number_plate,
+    par_hours: parseFloat(par_hours),
+    where_ride_from: where_ride_from,
+    where_ride_to: where_ride_to,
+    is_available: is_available
+  };
+
+  console.log(driverData); 
+
+  const token = localStorage.getItem("authToken");
+
+  fetch("http://127.0.0.1:8000/drivers/drivers/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `token ${token}`,
+    },
+    body: JSON.stringify(driverData),
+  })
+    .then(async response => {
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(JSON.stringify(error));
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Success:", data);
+      document.getElementById("successMessage").style.display = "block";
+      document.getElementById("driverForm").reset();
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+    });
+});

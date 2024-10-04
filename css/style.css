@@ -149,6 +149,12 @@ td {
     border: none;
 }
 
+#amount {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
 #navbar-fixed-top {
     position: fixed;
     top: 0;

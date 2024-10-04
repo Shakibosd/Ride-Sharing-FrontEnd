@@ -24,77 +24,73 @@ function fetchDriverDetails(driverId) {
       driverDetailsContent.innerHTML = `
           <h4>Phone : ${driver.phone_number}</h4>
           <h4>Email : ${driver.email}</h4>
-          <h4>Driving Licence : <span class="btn btn-secondary">${
-            driver.driving_licence
-          }</span></h4>
+          <h4>Driving Licence : <span class="btn btn-secondary">${driver.driving_licence}</span></h4>
           <h4>Number Plate : ${driver.number_plate}</h4>
           <h4>Per Hour : ${driver.par_hours} ৳</h4>
           <h4>Where To Stay : ${driver.where_ride_from} ৳</h4>
           <h4>Go Somewhere : ${driver.where_ride_to} ৳</h4>
-          <h4>Availability : <span class="btn btn-secondary">${
-            driver.is_available ? "Driver Available!" : "Not Available"
-          }</span></h4>
+          <h4>Availability : <span class="btn btn-secondary">${driver.is_available ? "Driver Available!" : "Not Available"}</span></h4>
           <br>
           <div class="d-flex gap-4">
              <div>
-                  <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Bill Pay</a>
+                  <a class="btn btn-primary btn-sm" id="edit-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Bill Pay</a>
               </div>
               <div>
-                  <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
+                  <a class="btn btn-warning btn-sm" id="review-button" data-bs-toggle="modal" data-bs-target="#exampleModal2">Review</a>
               </div>
           </div>
           <!-- Modal 1 -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                           <small class="text-center text-danger">As Much Money As The Driver Can Afford. Pay The Same Amount.</small>
+                        <small class="p-1">1. ড্রাইভার পার হাওয়ার যত টাকা নেয় তাকে ঠিক তত টাকা পে করুন।</small>
+                        <small class="p-1">2. যদি আপনার রাইড রিকুয়েস্ট ড্রাইভার একসেপ্ট করে, স্টেটাস পেনডিং থেকে রাইড কম্পিলিটেড হয় তাহলে বিল পে করুন অন্যথায় পে দিয়েন না।</smal>
                         <div class="modal-body text-dark">
                              <div class="mb-3">
                                 <label for="amount" class="form-label">Amount</label>
                                 <input type="number" class="form-control" id="amount" placeholder="Please Driver Amount Pay" required>
                             </div>
-                            <button class="btn btn-primary" onclick="submitPayment(${
-                              driver.id
-                            });">Submit</button>
+                            <button class="btn btn-primary" onclick="submitPayment(${driver.id});">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
-              <!-- Modal 2 -->
+            <!-- Modal 2 -->
             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-dark">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <p class="p-3">যদি আপনার রাইড রিকুয়েস্ট ড্রাইভার একসেপ্ট করে, স্টেটাস পেনডিং থেকে রাইড কম্পিলিটেড হয় তাহলে রিভিউ দেন অন্যথায় দিয়ে না।</p>
+                        <div class="modal-body text-dark">
                             <div class="mb-3">
-                            <label for="rating">Rate This</label>
-                            <select id="rating" name="rating" class="form-control" required>
-                                <option value="" selected>Select a rating</option>
-                                <option value="1">⭐</option>
-                                <option value="2">⭐⭐</option>
-                                <option value="3">⭐⭐⭐</option>
-                                <option value="4">⭐⭐⭐⭐</option>
-                                <option value="5">⭐⭐⭐⭐⭐</option>
-                            </select>
+                                <label for="rating">Rate This</label>
+                                <select id="rating" name="rating" class="form-control" required>
+                                    <option value="" selected>Select a rating</option>
+                                    <option value="1">⭐</option>
+                                    <option value="2">⭐⭐</option>
+                                    <option value="3">⭐⭐⭐</option>
+                                    <option value="4">⭐⭐⭐⭐</option>
+                                    <option value="5">⭐⭐⭐⭐⭐</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment">Comment</label>
+                                <textarea class="form-control" id="comment" placeholder="Please Enter Your Comment Here"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" onclick="submitReview()">Submit</button>
                         </div>
-                        <div class="mb-3">
-                            <label for="comment">Comment</label>
-                            <textarea class="form-control" id="comment" placeholder="Please Enter Your Comment Here"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" onclick="submitReview()">Submit</button>
                     </div>
                 </div>
             </div>
-        </div>
-          <!--edit and delete review-->
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+          <!-- Edit and delete review modal -->
+          <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
@@ -114,13 +110,14 @@ function fetchDriverDetails(driverId) {
                         </div>
                         <div class="mb-3">
                             <label for="edit-comment">Comment</label>
-                            <textarea class="form-control" id="edit-comment" placeholder="Please Enter Your Comment Here" required ></textarea>
+                            <textarea class="form-control" id="edit-comment" placeholder="Please Enter Your Comment Here" required></textarea>
                         </div>
                         <input type="hidden" id="edit-review-id">
                         <button type="button" class="btn btn-primary" onclick="updateReviewDetails()">Update</button>
                     </div>
                 </div>
             </div>
+        </div>
         `;
     })
     .catch((error) => console.error("Error fetching driver details:", error));
@@ -128,9 +125,10 @@ function fetchDriverDetails(driverId) {
 
 fetchDriverDetails(driverId);
 
+
 //review rating
 function submitReview(e) {
-  // e.preventDefault();
+  e.preventDefault();
   const rating = document.getElementById("rating").value;
   const comment = document.getElementById("comment").value;
 
@@ -364,16 +362,14 @@ function fetchRides() {
         if (!isAccepted) {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${
-              ride.driver ? ride.driver : "Driver Not Accept Your Request"
+            <td>${ride.driver ? ride.driver : "Driver Not Accept Your Request"
             }</td>
             <td>${ride.where_ride_from}</td>
             <td>${ride.where_ride_to}</td>
             <td id="status-${ride.id}">${ride.status || "Pending"}</td> 
             <td>
-                <button class="btn btn-success btn-sm" id="accept-btn-${
-                  ride.id
-                }"onclick="checkAdminAndAccept(${ride.id})" 
+                <button class="btn btn-success btn-sm" id="accept-btn-${ride.id
+            }"onclick="checkAdminAndAccept(${ride.id})" 
                 ${isAccepted ? "disabled" : ""}>
                     ${isAccepted ? "Accepted" : "Accept"}
                 </button>

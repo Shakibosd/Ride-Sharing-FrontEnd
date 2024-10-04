@@ -62,7 +62,7 @@ function fetchUsers() {
     .then((response) => response.json())
     .then((data) => {
       let userList = document.getElementById("user-list");
-      userList.innerHTML = ""; 
+      userList.innerHTML = "";
 
       data.forEach((user) => {
         let userCard = `

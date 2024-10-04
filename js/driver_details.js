@@ -64,7 +64,35 @@ function fetchDriverDetails(driverId) {
                     </div>
                 </div>
             </div>
-            <!-- Modal 2 -->
+              <!-- Modal 2 -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-dark">
+                            <div class="mb-3">
+                            <label for="rating">Rate This</label>
+                            <select id="rating" name="rating" class="form-control" required>
+                                <option value="" selected>Select a rating</option>
+                                <option value="1">⭐</option>
+                                <option value="2">⭐⭐</option>
+                                <option value="3">⭐⭐⭐</option>
+                                <option value="4">⭐⭐⭐⭐</option>
+                                <option value="5">⭐⭐⭐⭐⭐</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment">Comment</label>
+                            <textarea class="form-control" id="comment" placeholder="Please Enter Your Comment Here"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="submitReview()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
           <!--edit and delete review-->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">

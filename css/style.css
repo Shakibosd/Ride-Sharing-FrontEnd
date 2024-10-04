@@ -88,7 +88,20 @@ td {
     border: none;
 }
 
+#rating {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+
 #edit-comment {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#comment {
     background-color: black;
     color: white;
     border: none;

@@ -67,6 +67,7 @@ function fetchUsers() {
       data.forEach((user) => {
         let userCard = `
                     <div class="card bg-dark w-75 mx-auto p-5" style="border-radius:20px;">
+                            <h3 class="card-title">ID: ${user.id}</h3>
                             <h3 class="card-title">Username: ${user.username}</h3>
                             <p>First Name: ${user.first_name}</p>
                             <p>Last Name: ${user.last_name}</p>

@@ -35,10 +35,10 @@ function fetchDrivers() {
         listItem.style.listStyle = "none";
         listItem.style.borderRadius = "10px";
         listItem.innerHTML = `
-                <h5>
-                    <a style="text-decoration:none;" class="text-white" onclick="fetchDriverDetails(${driver.id})">${driver.user}</a>
-                </h5>
-            `;
+            <h5>
+                <a style="text-decoration:none;" class="text-white" onclick="fetchDriverDetails(${driver.id})">${driver.user}</a>
+            </h5>
+        `;
         driverList.appendChild(listItem);
 
         // Automatically show details for the first driver
@@ -138,9 +138,7 @@ function displayRides(rides) {
             <p class="card-text">Where Ride To : ${ride.where_ride_to}</p>
             <p class="card-text">${driverInfo}</p>
             <p class="card-text">Status : 
-                <span id="request-status-${
-                  ride.id
-                }" class="btn btn-secondary btn-sm">
+                <span id="request-status-${ride.id}" class="btn btn-secondary btn-sm">
                     ${ride.status === "Pending" ? "Pending" : ride.status}
                 </span>
             </p>

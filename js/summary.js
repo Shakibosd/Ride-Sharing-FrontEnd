@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     summaryTableBody.innerHTML = `
-        <tr>
-          <td colspan="4" class="text-center">No ride data available.</td>
-        </tr>
-      `;
+      <tr>
+        <td colspan="4" class="text-center">No ride data available.</td>
+      </tr>
+    `;
   }
 });

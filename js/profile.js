@@ -1,4 +1,3 @@
-//user profile and profile update
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
   const apiUrl = `http://127.0.0.1:8000/profiles/user_detail/${user_id}/`;
@@ -48,10 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Call function to update payment
 updatePaymentCards();
 
-//submit payment
 function submitPayment(driverId) {
   const amount = document.getElementById("amount").value;
 
@@ -63,14 +60,12 @@ function submitPayment(driverId) {
   const user_id = localStorage.getItem("user_id");
   const token = localStorage.getItem("authToken");
 
-  // debugging
   console.log({
     user: user_id,
     amount: amount,
     driver: driverId,
   });
 
-  // Send payment data
   fetch("http://127.0.0.1:8000/payments/payments/", {
     method: "POST",
     headers: {
@@ -104,7 +99,6 @@ function submitPayment(driverId) {
     });
 }
 
-// Function to update payment cards
 function updatePaymentCards() {
   const token = localStorage.getItem("authToken");
 
@@ -125,16 +119,15 @@ function updatePaymentCards() {
       const tableBody = document.getElementById("payment-table-body");
       tableBody.innerHTML = "";
 
-      // Display payment data for the logged-in user only
       data.forEach((payment) => {
         const row = document.createElement("tr");
         console.log(payment);
         row.innerHTML = `
-                    <td>${payment.user}</td>
-                    <td>${payment.driver}</td>
-                    <td>${payment.amount} ৳</td>
-                    <td>${payment.timestamp}</td>
-                `;
+            <td>${payment.user}</td>
+            <td>${payment.driver}</td>
+            <td>${payment.amount} ৳</td>
+            <td>${payment.timestamp}</td>
+        `;
         tableBody.appendChild(row);
       });
     })

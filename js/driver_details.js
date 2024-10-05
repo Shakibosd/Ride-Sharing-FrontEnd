@@ -67,7 +67,7 @@ function fetchDriverDetails(driverId) {
                             <h5 class="modal-title" id="exampleModalLabel">Review</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <p class="p-3">যদি আপনার রাইড রিকুয়েস্ট ড্রাইভার একসেপ্ট করে, স্টেটাস পেনডিং থেকে রাইড কম্পিলিটেড হয় তাহলে রিভিউ দেন অন্যথায় দিয়ে না।</p>
+                        <p class="p-3">যদি আপনার রাইড রিকুয়েস্ট ড্রাইভার একসেপ্ট করে, স্টেটাস পেনডিং থেকে রাইড কম্পিলিটেড হয় তাহলে রিভিউ দেন অন্যথায় দিয়েন না।</p>
                         <div class="modal-body text-dark">
                             <div class="mb-3">
                                 <label for="rating">Rate This</label>
@@ -126,7 +126,6 @@ function fetchDriverDetails(driverId) {
 fetchDriverDetails(driverId);
 
 
-//review rating
 function submitReview(e) {
   e.preventDefault();
   const rating = document.getElementById("rating").value;
@@ -213,20 +212,20 @@ function updateReviewCards() {
         card.classList.add("card", "mb-3", "bg-dark", "hovers");
         card.style.borderRadius = "10px";
         card.innerHTML = `
-                    <div class="w-100 p-3 bg-dark">
-                        <h5 class="card-title">Rating : ${review.rating}</h5>
-                        <p class="card-text">Comment : ${review.comment}</p>
-                        <p class="card-text"><small class="text-muted">Date : ${review.created_at}</small></p>
-                        <div class="d-flex gap-5">
-                            <div>
-                               <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"
-                                onclick="editReview(${review.id})">Edit</a>
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" onclick="deleteReview(${review.id})">Delete</a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="w-100 p-3 bg-dark">
+            <h5 class="card-title">Rating : ${review.rating}</h5>
+            <p class="card-text">Comment : ${review.comment}</p>
+            <p class="card-text"><small class="text-muted">Date : ${review.created_at}</small></p>
+            <div class="d-flex gap-5">
+                <div>
+                    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal"
+                    onclick="editReview(${review.id})">Edit</a>
+                </div>
+                <div>
+                    <a class="btn btn-danger" onclick="deleteReview(${review.id})">Delete</a>
+                </div>
+            </div>
+        </div>
         `;
         reviewCardsContainer.appendChild(card);
       });
@@ -340,7 +339,7 @@ function deleteReview(reviewId) {
     });
   }
 }
-//rider request
+
 document.addEventListener("DOMContentLoaded", fetchRides);
 
 function fetchRides() {
@@ -368,13 +367,11 @@ function fetchRides() {
             <td>${ride.where_ride_to}</td>
             <td id="status-${ride.id}">${ride.status || "Pending"}</td> 
             <td>
-                <button class="btn btn-success btn-sm" id="accept-btn-${ride.id
-            }"onclick="checkAdminAndAccept(${ride.id})" 
-                ${isAccepted ? "disabled" : ""}>
+                <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}"onclick="checkAdminAndAccept(${ride.id})" ${isAccepted ? "disabled" : ""}> 
                     ${isAccepted ? "Accepted" : "Accept"}
                 </button>
             </td>
-                    `;
+          `;
           row.setAttribute("id", `ride-row-${ride.id}`);
           rideRequests.appendChild(row);
         }
@@ -385,7 +382,6 @@ function fetchRides() {
 function checkAdminAndAccept(rideId) {
   const token = localStorage.getItem("authToken");
 
-  // Check if user is an admin
   fetch("http://127.0.0.1:8000/rides/is_admin/", {
     method: "GET",
     headers: {
@@ -435,7 +431,7 @@ function acceptRide(rideId) {
       alert("Ride request accepted successfully!");
       const row = document.getElementById(`ride-row-${rideId}`);
       row.remove();
-      updateAcceptedRides(rideId, data); // Update the accepted rides array
+      updateAcceptedRides(rideId, data); 
     })
     .catch((error) => {
       console.error("Error accepting ride:", error);
@@ -443,10 +439,9 @@ function acceptRide(rideId) {
     });
 }
 
-// Function to update accepted rides and store in sessionStorage
 function updateAcceptedRides(rideId, rideData) {
   let acceptedRides = JSON.parse(localStorage.getItem("acceptedRides")) || [];
   acceptedRides.push(rideData);
-  localStorage.setItem("acceptedRides", JSON.stringify(acceptedRides)); // Ensure you're using localStorage
-  window.location.href = "./summary.html"; // Redirect to summary page
+  localStorage.setItem("acceptedRides", JSON.stringify(acceptedRides)); 
+  window.location.href = "./summary.html"; 
 }

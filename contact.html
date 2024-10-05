@@ -81,32 +81,32 @@
     <br>
     <br>
     <script>
-        document.querySelector('form').addEventListener('submit', async (event) => {
+        document.querySelector("form").addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
 
             try {
-                const response = await fetch('http://127.0.0.1:8000/rides/contact/', {
-                    method: 'POST',
+                const response = await fetch("https://ride-sharing-back-end.vercel.app/rides/contact/", {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ name, email, message }),
                 });
 
                 if (response.ok) {
-                    alert('Your message has been sent successfully.');
-                    document.querySelector('form').reset();
+                    alert("Your message has been sent successfully.");
+                    document.querySelector("form").reset();
                 } else {
                     const errorData = await response.json();
-                    alert('Failed to send your message: ' + JSON.stringify(errorData));
+                    alert("Failed to send your message: " + JSON.stringify(errorData));
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred while sending your message.');
+                console.error("Error:", error);
+                alert("An error occurred while sending your message.");
             }
         });
     </script>

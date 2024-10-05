@@ -25,62 +25,61 @@
         <script src="./js/navbar.js"></script>
     </section>
     <!-- register -->
-    <div class="d-flex gap-5 container align-items-center" style="padding-top: 165px;">
-        <div class="card hovers bg-dark" style="border-radius: 20px;">
-            <img src="./images/reg1.png" alt="login-img" class="signup-img" />
+    <div class="container d-flex flex-column flex-md-row gap-5 align-items-center" style="padding-top: 185px;">
+        <div class="card hovers bg-dark w-100" id="signup-img" style="border-radius: 20px;">
+            <img src="./images/reg1.png" alt="login-img" class="signup-img img-fluid" />
         </div>
-        <div class="text-white w-50 mx-auto bg-dark p-5 card hovers" style="border-radius: 20px;">
+        <div class="w-100 text-white mx-auto bg-dark p-4 card hovers" style="border-radius: 20px;">
             <form class="row g-3 text-dark" id="register-form" onsubmit="handleRegister(event)">
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="username" class="form-label"><b>Username</b></label>
                     <input type="text" class="form-control" id="username" name="username"
                         placeholder="Please Enter A Username" required />
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="email" class="form-label"><b>Email</b></label>
                     <input type="email" class="form-control" id="email" name="email"
                         placeholder="Please Enter Your Email" required />
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="first_name" class="form-label"><b>First Name</b></label>
                     <input type="text" class="form-control" id="first_name" name="first_name"
                         placeholder="Please Enter Your First Name" required />
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="last_name" class="form-label"><b>Last Name</b></label>
                     <input type="text" class="form-control" id="last_name" name="last_name"
                         placeholder="Please Enter Your Last Name" required />
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="password" class="form-label"><b>Password</b></label>
                     <input type="password" class="form-control" id="password" name="password"
                         placeholder="Please Enter A Password" required />
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="confirm_password" class="form-label"><b>Confirm Password</b></label>
                     <input type="password" class="form-control" id="confirm_password" name="confirm_password"
                         placeholder="Please Enter Confirm Password" required />
                 </div>
-                <div>
-                    <button type="submit" class="btn btn-outline-info">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-info w-100">
                         <b>SignUp</b>
                     </button>
                 </div>
                 <p>
-                    <b>You Have Alrody An Account Please : </b>
-                    <a href="./login.html" class="btn btn-info btn-sm">Login</a>
+                    <b>You Have Already An Account Please: </b>
+                    <a href="./login.html" class="btn btn-success btn-sm">Login</a>
                 </p>
             </form>
         </div>
     </div>
-    <br>
-    <br>
+
 
     <!-- auth js -->
     <script src="./js/auth.js"></script>
 
     <!-- footer js -->
-    <div id="footer"></div>
+    <div id="footer" class="pt-5"></div>
     <script src="./js/footer.js"></script>
 
     <!-- check js -->

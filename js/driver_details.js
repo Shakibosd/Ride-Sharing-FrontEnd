@@ -4,7 +4,7 @@ const driverId = urlParams.get("id");
 //driver details
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
-  fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/drivers/drivers/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -156,7 +156,7 @@ function submitReview() {
     alert("Invalid rating value.");
     return;
   }
-  fetch(`http://127.0.0.1:8000/reviews/review_list_create/${driverId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/reviews/review_list_create/${driverId}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -190,7 +190,7 @@ function submitReview() {
 function updateReviewCards() {
   const token = localStorage.getItem("authToken");
 
-  fetch(`http://127.0.0.1:8000/reviews/reviews_detail_get/${driverId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail_get/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -241,7 +241,7 @@ updateReviewCards();
 function prepareEditModal(reviewId) {
   const token = localStorage.getItem("authToken");
 
-  fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -279,7 +279,7 @@ function updateReviewDetails() {
     return;
   }
 
-  fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -303,7 +303,7 @@ function updateReviewDetails() {
 function editReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
-  fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -329,7 +329,7 @@ function deleteReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
   if (confirm("Are you sure you want to delete this review?")) {
-    fetch(`http://127.0.0.1:8000/reviews/reviews_detail/${reviewId}/`, {
+    fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", fetchRides);
 //fetch riders
 function fetchRides() {
   const token = localStorage.getItem("authToken");
-  fetch("http://127.0.0.1:8000/rides/rides/", {
+  fetch("https://ride-sharing-back-end.vercel.app/rides/rides/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -390,7 +390,7 @@ function fetchRides() {
 function checkAdminAndAccept(rideId) {
   const token = localStorage.getItem("authToken");
 
-  fetch("http://127.0.0.1:8000/rides/is_admin/", {
+  fetch("https://ride-sharing-back-end.vercel.app/rides/is_admin/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -420,7 +420,7 @@ function acceptRide(rideId) {
   localStorage.setItem(`ride-${rideId}-accepted`, "true");
 
   const token = localStorage.getItem("authToken");
-  fetch(`http://127.0.0.1:8000/drivers/accept/${rideId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/drivers/accept/${rideId}/`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

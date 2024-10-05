@@ -1,7 +1,7 @@
 //profile user data show
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
-  const apiUrl = `http://127.0.0.1:8000/profiles/user_detail/${user_id}/`;
+  const apiUrl = `https://ride-sharing-back-end.vercel.app/profiles/user_detail/${user_id}/`;
   const token = localStorage.getItem("token");
 
   fetch(apiUrl, {
@@ -68,7 +68,7 @@ function submitPayment(driverId) {
     driver: driverId,
   });
 
-  fetch("http://127.0.0.1:8000/payments/payments/", {
+  fetch("https://ride-sharing-back-end.vercel.app/payments/payments/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -105,7 +105,7 @@ function submitPayment(driverId) {
 function updatePaymentCards() {
   const token = localStorage.getItem("authToken");
 
-  fetch("http://127.0.0.1:8000/payments/payments_get/", {
+  fetch("https://ride-sharing-back-end.vercel.app/payments/payments_get/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

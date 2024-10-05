@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const token = localStorage.getItem("authToken");
       if (token) {
-        fetch("http://127.0.0.1:8000/rides/is_admin/", {
+        fetch("https://ride-sharing-back-end.vercel.app/rides/is_admin/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

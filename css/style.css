@@ -66,6 +66,7 @@ td {
 }
 
 #message {
+    background-color: black;
     color: white;
     border: none;
 }

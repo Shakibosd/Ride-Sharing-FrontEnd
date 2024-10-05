@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function fetchDrivers() {
   const token = localStorage.getItem("authToken");
 
-  fetch("http://127.0.0.1:8000/drivers/drivers/", {
+  fetch("https://ride-sharing-back-end.vercel.app/drivers/drivers/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function fetchDrivers() {
 // Fetch specific driver details
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
-  fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
+  fetch(`https://ride-sharing-back-end.vercel.app/drivers/drivers/${driverId}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -98,7 +98,7 @@ function fetchDriverDetails(driverId) {
 // Fetch rides
 function fetchRides() {
   const token = localStorage.getItem("authToken");
-  fetch("http://127.0.0.1:8000/rides/rides/", {
+  fetch("https://ride-sharing-back-end.vercel.app/rides/rides/", {
     method: "GET",
     headers: {
       Authorization: `token ${token}`,
@@ -157,7 +157,7 @@ function addRide() {
   const where_ride_to = document.getElementById("where_ride_to").value;
 
   const token = localStorage.getItem("authToken");
-  fetch("http://127.0.0.1:8000/rides/rides/", {
+  fetch("https://ride-sharing-back-end.vercel.app/rides/rides/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

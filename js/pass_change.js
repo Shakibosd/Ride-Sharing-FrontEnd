@@ -8,7 +8,7 @@ document.getElementById("changePasswordForm")
     console.log(authToken);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/profiles/pass_cng/", {
+      const response = await fetch("https://ride-sharing-back-end.vercel.app/profiles/pass_cng/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

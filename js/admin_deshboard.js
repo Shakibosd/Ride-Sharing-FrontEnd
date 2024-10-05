@@ -1,7 +1,7 @@
 // API Fetch
 async function fetchDrivers() {
   try {
-    const response = await fetch("http://127.0.0.1:8000/drivers/drivers/");
+    const response = await fetch("https://ride-sharing-back-end.vercel.app/drivers/drivers/");
     const drivers = await response.json();
     displayDrivers(drivers);
   } catch (error) {
@@ -57,7 +57,7 @@ async function deleteDriver(driverId) {
 
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/drivers/drivers/${driverId}/`,
+      `https://ride-sharing-back-end.vercel.app/drivers/drivers/${driverId}/`,
       {
         method: "DELETE",
         headers: {
@@ -120,7 +120,7 @@ async function editDriver(driverId) {
   };
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/drivers/drivers/${driverId}/`,
+      `https://ride-sharing-back-end.vercel.app/drivers/drivers/${driverId}/`,
       {
         method: "PUT",
         headers: {
@@ -144,7 +144,7 @@ async function editDriver(driverId) {
 // load and display drivers
 async function loadDrivers() {
   try {
-    const response = await fetch("http://127.0.0.1:8000/drivers/drivers/");
+    const response = await fetch("https://ride-sharing-back-end.vercel.app/drivers/drivers/");
     const drivers = await response.json();
     displayDrivers(drivers);
   } catch (error) {
@@ -160,7 +160,7 @@ fetchDrivers();
 // Fetch user list
 function fetchUsers() {
   const token = localStorage.getItem("authToken");
-  fetch("http://127.0.0.1:8000/rides/user_list/", {
+  fetch("https://ride-sharing-back-end.vercel.app/rides/user_list/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -220,7 +220,7 @@ document.getElementById("driverForm").addEventListener("submit", function (e) {
 
   const token = localStorage.getItem("authToken");
 
-  fetch("http://127.0.0.1:8000/drivers/drivers/", {
+  fetch("https://ride-sharing-back-end.vercel.app/drivers/drivers/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

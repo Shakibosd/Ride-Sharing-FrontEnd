@@ -1,5 +1,4 @@
-document
-  .getElementById("changePasswordForm")
+document.getElementById("changePasswordForm")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -43,4 +42,4 @@ document
       messageElement.classList.add("text-danger");
       messageElement.classList.remove("text-success");
     }
-  });
+});

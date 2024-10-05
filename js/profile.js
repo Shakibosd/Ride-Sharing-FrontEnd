@@ -1,3 +1,4 @@
+//profile user data show
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
   const apiUrl = `http://127.0.0.1:8000/profiles/user_detail/${user_id}/`;
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 updatePaymentCards();
 
+//submit payment
 function submitPayment(driverId) {
   const amount = document.getElementById("amount").value;
 
@@ -99,6 +101,7 @@ function submitPayment(driverId) {
     });
 }
 
+//update payment
 function updatePaymentCards() {
   const token = localStorage.getItem("authToken");
 

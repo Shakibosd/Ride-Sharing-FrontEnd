@@ -18,7 +18,7 @@ function displayDrivers(drivers) {
     const card = document.createElement("div");
 
     card.innerHTML = `
-    <div class="card bg-dark w-75 container mb-5 p-5" style="border-radius:20px;">
+    <div class="card bg-dark w-50 container mb-5 p-5 hovers" style="border-radius:20px;">
         <h5>ID -> ${driver.id}</h5>
         <h5>Username -> ${driver.user}</h5>
         <h5>Name -> ${driver.name}</h5>
@@ -174,7 +174,7 @@ function fetchUsers() {
 
       data.forEach((user) => {
         let userCard = `
-          <div class="card bg-dark w-75 mx-auto m-3 p-5" style="border-radius:20px;">
+          <div class="card bg-dark w-50 d-flex flex-warp mx-auto m-5 p-5 hovers" style="border-radius:20px;">
              <h3 class="card-title">ID: ${user.id}</h3>
              <h3 class="card-title">Username: ${user.username}</h3>
              <p>First Name: ${user.first_name}</p>
@@ -190,6 +190,7 @@ function fetchUsers() {
 
 fetchUsers();
 
+//driver form
 document.getElementById("driverForm").addEventListener("submit", function (e) {
   e.preventDefault();
 

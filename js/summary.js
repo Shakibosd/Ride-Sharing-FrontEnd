@@ -1,3 +1,4 @@
+//alada page redirect
 document.addEventListener("DOMContentLoaded", () => {
   const rideDataArray = JSON.parse(localStorage.getItem("acceptedRides"))
   const summaryTableBody = document.getElementById("ride-summary");

@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const driverId = urlParams.get("id");
 
+//driver details
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
   fetch(`http://127.0.0.1:8000/drivers/drivers/${driverId}/`, {
@@ -126,8 +127,8 @@ function fetchDriverDetails(driverId) {
 fetchDriverDetails(driverId);
 
 
-function submitReview(e) {
-  e.preventDefault();
+//submit review
+function submitReview() {
   const rating = document.getElementById("rating").value;
   const comment = document.getElementById("comment").value;
 
@@ -185,6 +186,7 @@ function submitReview(e) {
     });
 }
 
+//update review
 function updateReviewCards() {
   const token = localStorage.getItem("authToken");
 
@@ -235,6 +237,7 @@ function updateReviewCards() {
 
 updateReviewCards();
 
+//modal review edit 
 function prepareEditModal(reviewId) {
   const token = localStorage.getItem("authToken");
 
@@ -254,6 +257,7 @@ function prepareEditModal(reviewId) {
     .catch((error) => console.error("Error fetching review details:", error));
 }
 
+//update review
 function updateReviewDetails() {
   const reviewId = document.getElementById("edit-review-id").value;
   const rating = document.getElementById("edit-rating").value;
@@ -295,6 +299,7 @@ function updateReviewDetails() {
   });
 }
 
+//edit review
 function editReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
@@ -319,6 +324,7 @@ function editReview(reviewId) {
     });
 }
 
+//delete review
 function deleteReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
@@ -342,6 +348,7 @@ function deleteReview(reviewId) {
 
 document.addEventListener("DOMContentLoaded", fetchRides);
 
+//fetch riders
 function fetchRides() {
   const token = localStorage.getItem("authToken");
   fetch("http://127.0.0.1:8000/rides/rides/", {
@@ -379,6 +386,7 @@ function fetchRides() {
     });
 }
 
+//admin rider request accept
 function checkAdminAndAccept(rideId) {
   const token = localStorage.getItem("authToken");
 
@@ -403,6 +411,7 @@ function checkAdminAndAccept(rideId) {
     });
 }
 
+//accept rider
 function acceptRide(rideId) {
   console.log(`Ride with ID ${rideId} accepted.`);
   const button = document.getElementById(`accept-btn-${rideId}`);
@@ -439,6 +448,7 @@ function acceptRide(rideId) {
     });
 }
 
+//redirect accept rider alada page
 function updateAcceptedRides(rideId, rideData) {
   let acceptedRides = JSON.parse(localStorage.getItem("acceptedRides")) || [];
   acceptedRides.push(rideData);

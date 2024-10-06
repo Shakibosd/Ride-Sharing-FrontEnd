@@ -26,85 +26,93 @@
     </section>
 
     <main>
-        <section style="padding-top: 150px;">
-            <h3 class="text-center">New Driver Add</h3>
-            <br>
-            <div class="d-flex gap-5 container align-items-center justify-content-center">
-                <img class="card bg-dark hovers w-50" src="./images/undraw_add_user_re_5oib.svg" alt=""
-                    style="border-radius: 20px;">
-                <form id="driverForm" method="post" enctype="multipart/form-data"
-                    class="card p-5 bg-dark w-50 mx-auto hovers" style="border-radius: 20px;">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="   text" class="form-control" id="name" placeholder="Enter Driver Name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter Driver Email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter Driver Phone Number"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="driving_licence" class="form-label">Driving Licence</label>
-                        <select class="form-control" id="driving_licence" required>
-                            <option value="">Select Driving Licence</option>
-                            <option value="YES">YES</option>
-                            <option value="NO">NO</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="number_plate" class="form-label">Number Plate</label>
-                        <input type="text" class="form-control" id="number_plate"
-                            placeholder="Enter vehicle number plate" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="par_hours" class="form-label">Par Hours</label>
-                        <input type="number" class="form-control" id="par_hours"
-                            placeholder="Enter Par Hours Exp 2 Decimel Fiend Added" step="0.01" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="where_ride_from" class="form-label">Where Ride From</label>
-                        <input type="text" class="form-control" id="where_ride_from"
-                            placeholder="Enter location where ride starts" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="where_ride_to" class="form-label">Where Ride To</label>
-                        <input type="text" class="form-control" id="where_ride_to"
-                            placeholder="Enter location where ride ends" required>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="is_available">
-                        <label class="form-check-label" for="is_available">Is Available</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Driver</button>
-                </form>
+        <div class="container" style="padding-top: 180px;">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 col-md-6 mb-4">
+                    <img class="card bg-dark hovers w-100" src="./images/undraw_add_user_re_5oib.svg" alt=""
+                        style="border-radius: 20px;">
+                </div>
+                <div class="col-12 col-md-6">
+                    <form id="driverForm" method="post" enctype="multipart/form-data" class="card p-4 bg-dark hovers"
+                        style="border-radius: 20px;">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Driver Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter Driver Email"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Enter Driver Phone Number"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="driving_licence" class="form-label">Driving Licence</label>
+                            <select class="form-control" id="driving_licence" required>
+                                <option value="">Select Driving Licence</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="number_plate" class="form-label">Number Plate</label>
+                            <input type="text" class="form-control" id="number_plate"
+                                placeholder="Enter vehicle number plate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="par_hours" class="form-label">Par Hours</label>
+                            <input type="number" class="form-control" id="par_hours"
+                                placeholder="Enter Par Hours Exp 2 Decimel Fiend Added" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="where_ride_from" class="form-label">Where Ride From</label>
+                            <input type="text" class="form-control" id="where_ride_from"
+                                placeholder="Enter location where ride starts" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="where_ride_to" class="form-label">Where Ride To</label>
+                            <input type="text" class="form-control" id="where_ride_to"
+                                placeholder="Enter location where ride ends" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="is_available">
+                            <label class="form-check-label" for="is_available">Is Available</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Driver</button>
+                    </form>
+                </div>
             </div>
+        </div>
 
-            <div id="successMessage" class="alert alert-success mt-3" style="display: none;">
-                Driver added successfully!
-            </div>
+
+        <div id="successMessage" class="alert alert-success mt-5 w-50 mx-auto text-center" style="display: none;">
+            Driver added successfully!
+        </div>
         </section>
+
         <section>
-            <div>
-                <br>
-                <h3 class="pt-3 text-center">Drivers List</h3>
-                <div id="drivers-list" class="pt-4">
+            <div class="container">
+                <h3 class="pt-5 text-center">Drivers List</h3>
+                <div id="drivers-list" class="row justify-content-center pt-3 mx-auto w-100">
 
                 </div>
             </div>
         </section>
+
+
         <section>
-            <div>
+            <div>   
                 <h3 class="pt-3 text-center">User List</h3>
-                <div id="user-list" class="pt-43">
+                <div id="user-list" class="row justify-content-center pt-3 mx-auto w-100">
 
                 </div>
             </div>
         </section>
     </main>
+    <br>
 
     <!-- footer js -->
     <div id="footer"></div>

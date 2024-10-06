@@ -1,7 +1,9 @@
 // API Fetch
 async function fetchDrivers() {
   try {
-    const response = await fetch("https://ride-sharing-back-end.vercel.app/drivers/drivers/");
+    const response = await fetch(
+      "https://ride-sharing-back-end.vercel.app/drivers/drivers/"
+    );
     const drivers = await response.json();
     displayDrivers(drivers);
   } catch (error) {
@@ -17,8 +19,10 @@ function displayDrivers(drivers) {
   drivers.forEach((driver) => {
     const card = document.createElement("div");
 
+    card.classList.add("col-12", "col-md-6", "mb-4");
+
     card.innerHTML = `
-    <div class="card bg-dark w-50 container mb-5 p-5 hovers" style="border-radius:20px;">
+    <div class="card bg-dark p-4 hovers" style="border-radius:20px;">
         <h5>ID -> ${driver.id}</h5>
         <h5>Username -> ${driver.user}</h5>
         <h5>Name -> ${driver.name}</h5>
@@ -32,17 +36,13 @@ function displayDrivers(drivers) {
         <h5>Available -> ${
           driver.is_available ? "Available" : "Not Available"
         }</h5>
-        <div class="d-flex gap-5">
-            <div>
-                <a class="btn btn-success" onclick="editDriver(${
-                  driver.id
-                })">Edit</a>
-            </div>
-            <div>
-                <a class="btn btn-danger" onclick="deleteDriver(${
-                  driver.id
-                })">Delete</a>
-            </div>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-success" onclick="editDriver(${
+              driver.id
+            })">Edit</a>
+            <a class="btn btn-danger" onclick="deleteDriver(${
+              driver.id
+            })">Delete</a>
         </div>
     </div>
     `;
@@ -144,7 +144,9 @@ async function editDriver(driverId) {
 // load and display drivers
 async function loadDrivers() {
   try {
-    const response = await fetch("https://ride-sharing-back-end.vercel.app/drivers/drivers/");
+    const response = await fetch(
+      "https://ride-sharing-back-end.vercel.app/drivers/drivers/"
+    );
     const drivers = await response.json();
     displayDrivers(drivers);
   } catch (error) {
@@ -174,14 +176,16 @@ function fetchUsers() {
 
       data.forEach((user) => {
         let userCard = `
-          <div class="card bg-dark w-50 d-flex flex-warp mx-auto m-5 p-5 hovers" style="border-radius:20px;">
-             <h3 class="card-title">ID: ${user.id}</h3>
-             <h3 class="card-title">Username: ${user.username}</h3>
-             <p>First Name: ${user.first_name}</p>
-             <p>Last Name: ${user.last_name}</p>
-             <p>Email: ${user.email}</p>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card bg-dark mx-auto m-3 p-4 hovers" style="border-radius:20px;">
+              <h3 class="card-title">ID: ${user.id}</h3>
+              <h3 class="card-title">Username: ${user.username}</h3>
+              <p>First Name: ${user.first_name}</p>
+              <p>Last Name: ${user.last_name}</p>
+              <p>Email: ${user.email}</p>
+            </div>
           </div>
-      `;
+        `;
         userList.innerHTML += userCard;
       });
     })

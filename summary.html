@@ -23,24 +23,31 @@
         <div id="navbar"></div>
         <script src="./js/navbar.js"></script>
     </section>
-    <section style="height: 70vh">
+
+    <style>
+        table {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+    </style>
+    <section style="height: 70vh;">
         <div class="container mt-5 pt-5">
-            <h1 class="text-center mt-5">
+            <h1 class="text-center mt-5 text-light">
                 List Of Drivers That Have Accepted The Rider's Request
             </h1>
-
-            <!-- Table to show ride summary -->
-            <table class="container bg-dark text-white text-center mt-5" style="border-radius: 15px; height: 17vh;">
-                <thead>
-                    <tr>
-                        <th>Driver</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="ride-summary"></tbody>
-            </table>
+            <div class="table-responsive"> 
+                <table class="table table-dark table-hover mt-5">
+                    <thead>
+                        <tr>
+                            <th>Driver</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ride-summary"></tbody>
+                </table>
+            </div>
         </div>
     </section>
 

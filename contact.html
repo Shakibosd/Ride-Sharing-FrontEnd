@@ -25,61 +25,66 @@
 
     <!-- contact -->
     <section>
-        <div class="d-flex container gap-5 align-items-center" style="padding-top: 165px;">
-            <div class="card hovers bg-dark" style="border-radius: 20px;">
-                <img class="w-100" src="./images/contact.svg">
-            </div>
-            <div class="card w-100 bg-dark   hovers p-5" style="border-radius: 20px;">
-                <h3 class="text-center">Contact Me</h3>
-                <br />
-                <div class="row pt-3">
-                    <!-- Left Column: Contact Details -->
-                    <div class="col-md-6">
-                        <b>Name :</b> Nazmus Shakib<br /><br />
-                        <b>Email : </b>
-                        syednazmusshakib94@gmail.com<br /><br />
-                        <b>Address : </b> Sylhet, Habiganj,
-                        Bangladesh<br /><br />
-                        <b>Mobile : </b> 01401997130<br /><br />
-                        <b>Education : </b> Diploma In Engineering
-                        (CSE)<br /><br />
+        <div class="container py-5">
+            <div class="row align-items-center gap-5" style="padding-top: 135px;">
+                <!-- Image Column -->
+                <div class="col-12 col-md-5">
+                    <div class="card hovers bg-dark" style="border-radius: 20px;">
+                        <img class="w-100" src="./images/contact.svg" alt="Contact Image">
                     </div>
+                </div>
 
-                    <!-- Right Column: Contact Form -->
-                    <div class="col-md-6">
-                        <form class="row w-100 mx-auto">
-                            <div class="mb-3">
-                                <label for="name" class="form-label"><b>Username</b></label>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Please Enter Your Name" required />
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label"><b>Email</b></label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Please Enter Your Email" required />
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label"><b>Message</b></label>
-                                <textarea class="form-control" id="message" name="message" rows="4"
-                                    placeholder="Please Enter Message Here" required></textarea>
-                            </div>
-                            <div class="d-flex gap-3">
-                                <button type="submit" class="btn btn-outline-success">
-                                    <b>Submit</b>
-                                </button>
-                                <button type="reset" class="btn btn-outline-danger">
-                                    <b>Reset</b>
-                                </button>
-                            </div>
-                        </form>
+                <!-- Contact Form and Details -->
+                <div class="col-12 col-md-6">
+                    <div class="card bg-dark hovers p-4" style="border-radius: 20px;">
+                        <h3 class="text-center text-light">Contact Me</h3>
                         <br />
+                        <div class="row pt-5">
+                            <!-- Left Column: Contact Details -->
+                            <div class="col-12 col-md-6">
+                                <b>Name :</b> Nazmus Shakib<br /><br />
+                                <b>Email : </b> syednazmusshakib94@gmail.com<br /><br />
+                                <b>Address : </b> Sylhet, Habiganj, Bangladesh<br /><br />
+                                <b>Mobile : </b> 01401997130<br /><br />
+                                <b>Education : </b> Diploma In Engineering (CSE)<br /><br />
+                            </div>
+
+                            <!-- Right Column: Contact Form -->
+                            <div class="col-12">
+                                <form class="row">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label text-light"><b>Username</b></label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Please Enter Your Name" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label text-light"><b>Email</b></label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Please Enter Your Email" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label text-light"><b>Message</b></label>
+                                        <textarea class="form-control" id="message" name="message" rows="4"
+                                            placeholder="Please Enter Message Here" required></textarea>
+                                    </div>
+                                    <div class="d-flex gap-3">
+                                        <button type="submit" class="btn btn-outline-success w-100">
+                                            <b>Submit</b>
+                                        </button>
+                                        <button type="reset" class="btn btn-outline-danger w-100">
+                                            <b>Reset</b>
+                                        </button>
+                                    </div>
+                                </form>
+                                <br />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <br>
-    <br>
+
     <script>
         document.querySelector("form").addEventListener("submit", async (event) => {
             event.preventDefault();

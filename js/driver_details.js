@@ -4,13 +4,16 @@ const driverId = urlParams.get("id");
 //driver details
 function fetchDriverDetails(driverId) {
   const token = localStorage.getItem("authToken");
-  fetch(`https://ride-sharing-back-end.vercel.app/drivers/drivers/${driverId}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-  })
+  fetch(
+    `https://ride-sharing-back-end.vercel.app/drivers/drivers/${driverId}/`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch driver details.");
@@ -25,12 +28,16 @@ function fetchDriverDetails(driverId) {
       driverDetailsContent.innerHTML = `
           <h4>Phone : ${driver.phone_number}</h4>
           <h4>Email : ${driver.email}</h4>
-          <h4>Driving Licence : <span class="btn btn-secondary">${driver.driving_licence}</span></h4>
+          <h4>Driving Licence : <span class="btn btn-secondary">${
+            driver.driving_licence
+          }</span></h4>
           <h4>Number Plate : ${driver.number_plate}</h4>
           <h4>Per Hour : ${driver.par_hours} ৳</h4>
           <h4>Where To Stay : ${driver.where_ride_from} ৳</h4>
           <h4>Go Somewhere : ${driver.where_ride_to} ৳</h4>
-          <h4>Availability : <span class="btn btn-secondary">${driver.is_available ? "Driver Available!" : "Not Available"}</span></h4>
+          <h4>Availability : <span class="btn btn-secondary">${
+            driver.is_available ? "Driver Available!" : "Not Available"
+          }</span></h4>
           <br>
           <div class="d-flex gap-4">
              <div>
@@ -55,7 +62,9 @@ function fetchDriverDetails(driverId) {
                                 <label for="amount" class="form-label">Amount</label>
                                 <input type="number" class="form-control" id="amount" placeholder="Please Driver Amount Pay" required>
                             </div>
-                            <button class="btn btn-primary" onclick="submitPayment(${driver.id});">Submit</button>
+                            <button class="btn btn-primary" onclick="submitPayment(${
+                              driver.id
+                            });">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -126,7 +135,6 @@ function fetchDriverDetails(driverId) {
 
 fetchDriverDetails(driverId);
 
-
 //submit review
 function submitReview() {
   const rating = document.getElementById("rating").value;
@@ -156,18 +164,21 @@ function submitReview() {
     alert("Invalid rating value.");
     return;
   }
-  fetch(`https://ride-sharing-back-end.vercel.app/reviews/review_list_create/${driverId}/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-    body: JSON.stringify({
-      user: parseInt(user_id),
-      rating: starRating,
-      comment: comment,
-    }),
-  })
+  fetch(
+    `https://ride-sharing-back-end.vercel.app/reviews/review_list_create/${driverId}/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+      body: JSON.stringify({
+        user: parseInt(user_id),
+        rating: starRating,
+        comment: comment,
+      }),
+    }
+  )
     .then(async (response) => {
       if (response.ok) {
         return response.json();
@@ -190,13 +201,16 @@ function submitReview() {
 function updateReviewCards() {
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail_get/${driverId}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-  })
+  fetch(
+    `https://ride-sharing-back-end.vercel.app/reviews/reviews_detail_get/${driverId}/`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch reviews.");
@@ -237,17 +251,20 @@ function updateReviewCards() {
 
 updateReviewCards();
 
-//modal review edit 
+//modal review edit
 function prepareEditModal(reviewId) {
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-  })
+  fetch(
+    `https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+    }
+  )
     .then((response) => response.json())
     .then((review) => {
       document.getElementById("edit-rating").value = review.rating;
@@ -279,17 +296,20 @@ function updateReviewDetails() {
     return;
   }
 
-  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-    body: JSON.stringify({
-      rating: starRating,
-      comment: comment,
-    }),
-  }).then(async (response) => {
+  fetch(
+    `https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+      body: JSON.stringify({
+        rating: starRating,
+        comment: comment,
+      }),
+    }
+  ).then(async (response) => {
     if (response.ok) {
       alert("Review updated successfully!");
       updateReviewCards();
@@ -303,13 +323,16 @@ function updateReviewDetails() {
 function editReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-  })
+  fetch(
+    `https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch review details.");
@@ -329,13 +352,16 @@ function deleteReview(reviewId) {
   const token = localStorage.getItem("authToken");
 
   if (confirm("Are you sure you want to delete this review?")) {
-    fetch(`https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${token}`,
-      },
-    }).then((response) => {
+    fetch(
+      `https://ride-sharing-back-end.vercel.app/reviews/reviews_detail/${reviewId}/`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `token ${token}`,
+        },
+      }
+    ).then((response) => {
       if (!response.ok) {
         throw new Error("Failed to delete review.");
       }
@@ -368,13 +394,18 @@ function fetchRides() {
         if (!isAccepted) {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${ride.driver ? ride.driver : "Driver Not Accept Your Request"
+            <td>${
+              ride.driver ? ride.driver : "Driver Not Accept Your Request"
             }</td>
             <td>${ride.where_ride_from}</td>
             <td>${ride.where_ride_to}</td>
             <td id="status-${ride.id}">${ride.status || "Pending"}</td> 
             <td>
-                <button class="btn btn-success btn-sm" id="accept-btn-${ride.id}"onclick="checkAdminAndAccept(${ride.id})" ${isAccepted ? "disabled" : ""}> 
+                <button class="btn btn-success btn-sm" id="accept-btn-${
+                  ride.id
+                }" onclick="checkAdminAndAccept(${ride.id})" ${
+            isAccepted ? "disabled" : ""
+          }> 
                     ${isAccepted ? "Accepted" : "Accept"}
                 </button>
             </td>
@@ -440,7 +471,7 @@ function acceptRide(rideId) {
       alert("Ride request accepted successfully!");
       const row = document.getElementById(`ride-row-${rideId}`);
       row.remove();
-      updateAcceptedRides(rideId, data); 
+      updateAcceptedRides(rideId, data);
     })
     .catch((error) => {
       console.error("Error accepting ride:", error);
@@ -452,6 +483,6 @@ function acceptRide(rideId) {
 function updateAcceptedRides(rideId, rideData) {
   let acceptedRides = JSON.parse(localStorage.getItem("acceptedRides")) || [];
   acceptedRides.push(rideData);
-  localStorage.setItem("acceptedRides", JSON.stringify(acceptedRides)); 
-  window.location.href = "./summary.html"; 
+  localStorage.setItem("acceptedRides", JSON.stringify(acceptedRides));
+  window.location.href = "./summary.html";
 }

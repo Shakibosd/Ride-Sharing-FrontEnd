@@ -23,58 +23,66 @@
     <div id="navbar"></div>
     <script src="./js/navbar.js"></script>
 
-    <section style="padding-top: 160px;">
-        <h3 class="text-center">Driver Payment</h3>
+    <section style="padding-top: 120px;">
+        <h3 class="text-center pt-5">Driver Payment</h3>
         <br>
-        <div class="container text-center card hovers bg-dark">
-            <table id="payment-table" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Driver</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody id="payment-table-body">
-
-                </tbody>
-            </table>
+        <div class="container">
+            <div class="card hovers bg-dark">
+                <div class="table-responsive">
+                    <table id="payment-table" class="table text-white">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Driver</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payment-table-body">
+                            <!-- Payment data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
     <br>
     <!-- Profile Update -->
     <section>
         <h3 class="text-center">Your Profile</h3>
-        <div class="d-flex container align-items-center gap-5 pt-4">
-            <div>
-                <img src="images/profile.svg" alt="profile-img" class="profile-img card bg-dark w-100 hovers"
-                    style="border-radius: 20px;" />
-            </div>
-            <div class="card w-100 bg-dark hovers" style="border-radius: 20px;">
-                <form class="row g-3 gap-3 p-5" id="profile-form">
-                    <div>
-                        <label for="username" class="form-label"><b>Username</b></label>
-                        <input type="text" class="form-control" id="username" name="username" required />
+        <div class="container pt-4">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-4 mb-3">
+                    <img src="images/profile.svg" alt="profile-img" class="profile-img card bg-dark w-100 hovers"
+                        style="border-radius: 20px;" />
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="card bg-dark hovers" style="border-radius: 20px;">
+                        <form class="row g-3 p-4" id="profile-form">
+                            <div class="col-12">
+                                <label for="username" class="form-label"><b>Username</b></label>
+                                <input type="text" class="form-control" id="username" name="username" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="first_name" class="form-label"><b>First Name</b></label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="last_name" class="form-label"><b>Last Name</b></label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label"><b>Email</b></label>
+                                <input type="email" class="form-control" id="email" name="email" required />
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-outline-info w-100">
+                                    <b>Update Profile</b>
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div>
-                        <label for="first_name" class="form-label"><b>First Name</b></label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" required />
-                    </div>
-                    <div>
-                        <label for="last_name" class="form-label"><b>Last Name</b></label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" required />
-                    </div>
-                    <div>
-                        <label for="email" class="form-label"><b>Email</b></label>
-                        <input type="email" class="form-control" id="email" name="email" required />
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-outline-info">
-                            <b>Update Profile</b>
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>

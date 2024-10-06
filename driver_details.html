@@ -24,43 +24,51 @@
     <div id="navbar"></div>
     <script src="./js/navbar.js"></script>
   </section>
+
   <section>
-    <div class="container" style="padding-top: 150px;">
-      <h2 class="text-center">Ride Requests</h2>
-      <table class="mt-4 bg-dark   text-white container text-center">
-        <thead>
-          <tr>
-            <th>Driver Username</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="ride-requests">
-          <!-- Ride request rows will be appended here -->
-        </tbody>
-      </table>
+    <div class="container" style="padding-top: 120px;">
+      <h2 class="text-center pt-5">Ride Requests</h2>
+      <div class="table-responsive">
+        <table class="mt-4 table table-dark text-white text-center">
+          <thead>
+            <tr>
+              <th>Driver Username</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ride-requests">
+            <!-- Ride request rows will be appended here -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
+
+
   <section>
     <div class="container">
       <br />
       <h2 class="text-center">Driver Details</h2>
       <br />
-      <div id="driver-details-content" class="card bg-dark mx-auto w-50 p-5 pt-5 hovers" style="border-radius: 20px"></div>
+      <div id="driver-details-content" class="card bg-dark mx-auto w-100 p-4 hovers"
+        style="max-width: 600px; border-radius: 20px;"></div>
     </div>
   </section>
 
-  <!-- reviews count -->
+  <!-- Reviews Count -->
   <section>
-    <h3 class="pt-3 container">
+    <h3 class="pt-3 container text-center">
       Total Count -> <span id="reviewCounts">0</span>
     </h3>
   </section>
-  <!-- review -->
+
+  <!-- Review -->
   <section>
-    <div id="review-cards-container" class="w-100 d-flex gap-3 container">
+    <div id="review-cards-container" class="w-100 d-flex flex-column flex-md-row gap-3 container">
+      <!-- Review cards will be appended here -->
     </div>
   </section>
 

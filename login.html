@@ -25,30 +25,41 @@
         <script src="./js/navbar.js"></script>
     </section>
     <!-- Login -->
-    <div class="d-flex mx-auto w-75 gap-5 align-items-center" style="padding-top: 165px;">
-        <div class="card w-50 hovers bg-dark" style="border-radius: 20px;">
-            <img src="./images/login.svg" alt="login-img" class="login-img" />
+    <section>
+        <div class="container" style="padding-top: 180px;">
+            <div class="row align-items-center justify-content-center">
+                <!-- Image Column -->
+                <div class="col-12 col-md-5 mb-4 mb-md-0 d-flex justify-content-center">
+                    <div class="card w-100 hovers bg-dark" style="border-radius: 20px;">
+                        <img src="./images/login.svg" alt="login-img" class="w-100" />
+                    </div>
+                </div>
+
+                <!-- Login Form Column -->
+                <div class="col-12 col-md-6">
+                    <div class="card w-100 bg-dark p-5 hovers" style="border-radius: 20px;">
+                        <form class="row g-3" id="login-form" onsubmit="handleLogin(event)">
+                            <div class="col-12">
+                                <label for="username" class="form-label text-light"><b>Username</b></label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Please Enter Your Username" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="password" class="form-label text-light"><b>Password</b></label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Please Enter Your Password" required />
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-outline-info w-100">
+                                    <b>Sign in</b>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="w-100 bg-dark mx-auto p-5 card hovers" style="border-radius: 20px;">
-            <form class="row g-3" id="login-form" onsubmit="handleLogin(event)">
-                <div class="col-md-12">
-                    <label for="username" class="form-label"><b>Username</b></label>
-                    <input type="text" class="form-control" id="username" name="username"
-                        placeholder="Please Enter Your Username" required />
-                </div>
-                <div class="col-md-12">
-                    <label for="password" class="form-label"><b>Password</b></label>
-                    <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Please Enter Your Password" required />
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-outline-info">
-                        <b>Sign in</b>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+    </section>
     <br>
     <br>
 

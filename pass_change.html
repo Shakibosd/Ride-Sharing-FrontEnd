@@ -23,31 +23,30 @@
     <div id="navbar"></div>
     <script src="./js/navbar.js"></script>
 
-    <!-- Login -->
-    <div class="d-flex container gap-5" style="padding-top: 200px;">
+    <!-- password change page -->
+    <div class="container d-flex flex-column flex-md-row gap-5" style="padding-top: 200px;">
         <div>
             <img src="images/pass.svg" alt="login-img" class="login-img bg-dark card w-100 hovers"
                 style="border-radius: 20px;" />
         </div>
         <div class="w-100 bg-dark card hovers p-5" style="border-radius: 20px;">
             <form id="changePasswordForm" class="row g-3 pt-3">
-                <div>
+                <div class="col-12">
                     <label for="oldPassword" class="form-label"><b>Old Password</b></label>
                     <input type="password" class="form-control" id="oldPassword" name="oldPassword"
                         placeholder="Please Enter Your Old Password" required />
                 </div>
-                <div>
+                <div class="col-12">
                     <label for="newPassword" class="form-label"><b>New Password</b></label>
                     <input type="password" class="form-control" id="newPassword" name="newPassword"
                         placeholder="Please Enter A New Strong Password" required />
                 </div>
-                <div>
+                <div class="col-12">
                     <button type="submit" class="btn btn-outline-info">
                         Submit
                     </button>
                 </div>
             </form>
-            <!-- <div id="message" class="text-white pt-3"></div> -->
         </div>
     </div>
 
